@@ -38,12 +38,12 @@ client.on('message', (message) => {
         }
     }
 
-    if(message.content == "Random coub")
+    if(message.content == "Go random coub")
     {
         message.channel.send("http://coub.com/view/"+getRandom()+getRandom()+getRandom()+getRandom()+getRandom());
     }
 
-    if(message.content == "Аниме?")
+    if(message.content == "Go anime")
     {
         var voiceChannel = message.member.voiceChannel;
         voiceChannel.join().then(connection =>{
@@ -52,10 +52,18 @@ client.on('message', (message) => {
         })
         setTimeout(leaveVoice, 5000, voiceChannel);
     }
+	
     if(message.content == "Уди")
     {
         var voiceChannel = message.member.voiceChannel;
         voiceChannel.leave();
     }
+	
+	if(message.content == "Go ping")
+	{ 
+		var time = message.createdAt;
+		var now = Date();
+		message.channel.send("Go pong (" + Date().getMilliseconds()-time.getMilliseconds()+")");
+	}
 });
 
