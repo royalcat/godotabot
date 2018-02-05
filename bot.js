@@ -14,7 +14,7 @@ function leaveVoice(voiceChannel)
 client.login(process.env.BOT_TOKEN);
 
 client.on('message', (message) => {
-    if(message.content.startsWith("Go dota")) {
+    if(message.content.startsWith(prefix +" dota")) {
         if(message.content.length <= 8)
         {
             message.channel.send("@everyone го дота");   
@@ -38,12 +38,12 @@ client.on('message', (message) => {
         }
     }
 
-    if(message.content == "Go random coub")
+    if(message.content == prefix +" random coub")
     {
         message.channel.send("http://coub.com/view/"+getRandom()+getRandom()+getRandom()+getRandom()+getRandom());
     }
 
-    if(message.content == "Go anime")
+    if(message.content == prefix +" anime")
     {
 		if(message.member.voiceChannel != null)
 		{
@@ -66,11 +66,9 @@ client.on('message', (message) => {
         voiceChannel.leave();
     }
 	
-	if(message.content == "Go ping")
+	if(message.content == prefix + " ping")
 	{ 
-		var time = message.createdAt;
-		var now = Date();
-		message.channel.send("Go pong (" + Date().getMilliseconds()-time.getMilliseconds()+")");
+		message.channel.send("Go pong");
 	}
 });
 
