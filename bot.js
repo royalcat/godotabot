@@ -45,12 +45,19 @@ client.on('message', (message) => {
 
     if(message.content == "Go anime")
     {
-        var voiceChannel = message.member.voiceChannel;
-        voiceChannel.join().then(connection =>{
-            const dispatcher = connection.playFile('./media/anime.mp3');
-            dispatcher.setVolume(1);
-        })
-        setTimeout(leaveVoice, 5000, voiceChannel);
+		if(message.member.voiceChannel != null)
+		{
+			var voiceChannel = message.member.voiceChannel;
+			voiceChannel.join().then(connection =>{
+				const dispatcher = connection.playFile('./media/anime.mp3');
+				dispatcher.setVolume(1);
+			})
+			setTimeout(leaveVoice, 5000, voiceChannel);
+		}
+		else
+		{
+			message.channel.send("NEIN NEIN NEIN NEIN NEIN NEIN");
+		}
     }
 	
     if(message.content == "Уди")
