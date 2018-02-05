@@ -71,7 +71,7 @@ client.on('message', (message) => {
 		message.channel.send("Go pong");
 	}
 	
-	if(message.content == prefix + "help")
+	if(message.content == prefix + " help")
 	{
 		
 		message.channel.send("Go - префикс для всех комманд, далее его не будет\n1.anime - кричит - Что поцаны Аниме? - в ваш голосовой чат\n2.dota (цифра) - зовет всех в доту нужное количество раз, но не более 10\n3.random coub - рандомный коуб\n4.Уди - выгоняет бота из голосового чата");
