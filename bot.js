@@ -40,7 +40,14 @@ client.on('message', (message) => {
 
     if(message.content == prefix +" random coub")
     {
-        message.channel.send("http://coub.com/view/"+getRandom()+getRandom()+getRandom()+getRandom()+getRandom());
+        do
+	{
+		var url = 'http://coub.com/view/'+getRandom()+getRandom()+getRandom()+getRandom()+getRandom();
+		var req = new XMLHttpRequest();
+		req.open('GET', 'proxy.php?url='+url, false);
+	} while(req.find('Page not found') == -1)
+
+        message.channel.send(url);
     }
 
     if(message.content == prefix +" anime")
