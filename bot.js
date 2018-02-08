@@ -1,4 +1,5 @@
 ﻿const Discord = require("discord.js");
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const client = new Discord.Client();
 var prefix = 'Go'
 
@@ -40,7 +41,14 @@ client.on('message', (message) => {
 
     if(message.content == prefix +" random coub")
     {
-        message.channel.send("http://coub.com/view/"+getRandom()+getRandom()+getRandom()+getRandom()+getRandom());
+        do
+	{
+		var url = 'http://coub.com/view/'+getRandom()+getRandom()+getRandom()+getRandom()+getRandom();
+		var req = new XMLHttpRequest();
+		req.open('GET', 'proxy.php?url='+url, false);
+	} while(req.find('Page not found') == -1)
+
+        message.channel.send(url);
     }
 
     if(message.content == prefix +" anime")
@@ -73,8 +81,42 @@ client.on('message', (message) => {
 	
 	if(message.content == prefix + " help")
 	{
+		var commands =[];
+		commands[0] = "Go - префикс для всех команд, далее его не будет\n";
+		commands[1] = "1.anime - кричит - Что поцаны Аниме? - в ваш голосовой чат\n"
+		commands[2] = "2.dota (цифра) - зовет всех в доту нужное количество раз, но не более 10\n"
+		commands[3] = "3.random coub - рандомный коуб\n"
+		commands[4] = "4.custom call (название) (число) зовет всех в заданное название\n"
 		
-		message.channel.send("Go - префикс для всех комманд, далее его не будет\n1.anime - кричит - Что поцаны Аниме? - в ваш голосовой чат\n2.dota (цифра) - зовет всех в доту нужное количество раз, но не более 10\n3.random coub - рандомный коуб\n4.Уди - выгоняет бота из голосового чата");
+		message.channel.send(commands[0]+commands[1]+commands[2]+commands[3]+commands[4]);
+	}
+	
+	if(message.content.startsWith(prefix +" custom call "))
+	{
+		var i = 15;
+		var game = message.content.substr(15);
+		if(parseInt(message.content.replace(/\D+/g,"")) == null)
+		{
+			message.channel.send("Go" + game);
+		}
+		else
+		{
+			var num = parseInt(message.content.replace(/\D+/g,""));
+			if(num > 1 && num <=10)
+			{
+				var gameName = message.content.split(' ')[1];
+				i=0;
+				do
+				{
+					message.channel.send("@everyone Go " + game);
+					i++
+				}while(i != num)
+			}
+			else
+			{
+				message.channel.send("ОООО ПЕТУШОК НАШЕЛСЯ");
+			}
+		}
 	}
 });
 
