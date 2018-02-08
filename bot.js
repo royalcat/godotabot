@@ -120,7 +120,7 @@ client.on('message', (message) => {
 	}
 	if(message.content = "игрек приди")
 	{
-		message.content.send("@igorigrik#4155 ПРОСНИСЬ")
+		message.channel.send("@igorigrik#4155 ПРОСНИСЬ");
 	}
 });
 
