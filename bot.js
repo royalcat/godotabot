@@ -15,7 +15,7 @@ function leaveVoice(voiceChannel)
 client.login(process.env.BOT_TOKEN);
 
 client.on('message', (message) => {
-	string MSG = message.content.toLowerCase();
+	var MSG = message.content.toLowerCase();
     if(MSG.startsWith(prefix +" dota")) {
         if(MSG.length <= 8)
         {
