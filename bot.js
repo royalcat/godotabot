@@ -81,8 +81,14 @@ client.on('message', (message) => {
 	
 	if(message.content == prefix + " help")
 	{
+		var commands =[];
+		commands[0] = "Go - префикс для всех команд, далее его не будет\n";
+		commands[1] = "1.anime - кричит - Что поцаны Аниме? - в ваш голосовой чат\n"
+		commands[2] = "2.dota (цифра) - зовет всех в доту нужное количество раз, но не более 10\n"
+		commands[3] = "3.random coub - рандомный коуб\n"
+		commands[4] = "4.custom call (название) (число) зовет всех в заданное название\n"
 		
-		message.channel.send("Go - префикс для всех команд, далее его не будет\n1.anime - кричит - Что поцаны Аниме? - в ваш голосовой чат\n2.dota (цифра) - зовет всех в доту нужное количество раз, но не более 10\n3.random coub - рандомный коуб\n4.Уди - выгоняет бота из голосового чата.");
+		message.channel.send(commands[0]+commands[1]+commands[2]+commands[3]+commands[4]);
 	}
 	
 	if(message.content.startsWith(prefix +" custom call "))
@@ -96,13 +102,20 @@ client.on('message', (message) => {
 		else
 		{
 			var num = parseInt(message.content.replace(/\D+/g,""));
-			var gameName = message.content.split(' ')[0];
-			i=0;
-			do
+			if(num > 1 && num <=10)
 			{
-				message.channel.send("@everyone Go " + game);
-				i++
-			}while(i != num)
+				var gameName = message.content.split(' ')[0];
+				i=0;
+				do
+				{
+					message.channel.send("@everyone Go " + game);
+					i++
+				}while(i != num)
+			}
+			else
+			{
+				message.channel.send("ОООО ПЕТУШОК НАШЕЛСЯ");
+			}
 		}
 	}
 });
