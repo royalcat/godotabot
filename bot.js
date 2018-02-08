@@ -100,7 +100,7 @@ client.on('message', (message) => {
 			i=0;
 			do
 			{
-				message.channel.send("Go" + game);
+				message.channel.send("@everyone Go " + game);
 				i++
 			}while(i != num)
 		}
