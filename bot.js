@@ -1,7 +1,7 @@
 ﻿const Discord = require("discord.js");
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const client = new Discord.Client();
-var prefix = 'Go'
+var prefix = 'go'
 
 function getRandom()
 {
@@ -15,15 +15,16 @@ function leaveVoice(voiceChannel)
 client.login(process.env.BOT_TOKEN);
 
 client.on('message', (message) => {
-    if(message.content.startsWith(prefix +" dota")) {
-        if(message.content.length <= 8)
+	var MSG = message.content.toLowerCase();
+    if(MSG.startsWith(prefix +" dota")) {
+        if(MSG.length <= 8)
         {
             message.channel.send("@everyone го дота");   
         }
-        if(message.content.length > 8)
+        if(MSG.length > 8)
         {
             var i = 0;
-            var num = parseInt(message.content.replace(/\D+/g,""));
+            var num = parseInt(MSG.replace(/\D+/g,""));
             if(num > 0 && num < 11)
             {
                 while(i != num)
@@ -39,9 +40,10 @@ client.on('message', (message) => {
         }
     }
 
-    if(message.content == prefix +" random coub")
+    if(MSG == prefix +" random coub")
     {
-        do
+		
+    do
 	{
 		var url = 'http://coub.com/view/'+getRandom()+getRandom()+getRandom()+getRandom()+getRandom();
 		var req = new XMLHttpRequest();
@@ -51,7 +53,7 @@ client.on('message', (message) => {
         message.channel.send(url);
     }
 
-    if(message.content == prefix +" anime")
+    if(MSG == prefix +" anime")
     {
 		if(message.member.voiceChannel != null)
 		{
@@ -68,18 +70,18 @@ client.on('message', (message) => {
 		}
     }
 	
-    if(message.content == "Уди")
+    if(MSG == "Уди")
     {
         var voiceChannel = message.member.voiceChannel;
         voiceChannel.leave();
     }
 	
-	if(message.content == prefix + " ping")
+	if(MSG == prefix + " ping")
 	{ 
 		message.channel.send("Go pong");
 	}
 	
-	if(message.content == prefix + " help")
+	if(MSG == prefix + " help")
 	{
 		var commands =[];
 		commands[0] = "Go - префикс для всех команд, далее его не будет\n";
@@ -91,20 +93,20 @@ client.on('message', (message) => {
 		message.channel.send(commands[0]+commands[1]+commands[2]+commands[3]+commands[4]);
 	}
 	
-	if(message.content.startsWith(prefix +" custom call "))
+	if(MSG.startsWith(prefix +" custom call "))
 	{
 		var i = 15;
-		var game = message.content.substr(15);
-		if(parseInt(message.content.replace(/\D+/g,"")) == null)
+		var game = MSG.substr(15);
+		if(parseInt(MSG.replace(/\D+/g,"")) == null)
 		{
 			message.channel.send("Go" + game);
 		}
 		else
 		{
-			var num = parseInt(message.content.replace(/\D+/g,""));
+			var num = parseInt(MSG.replace(/\D+/g,""));
 			if(num >= 1 && num <=9)
 			{
-				var gameName = message.content.split(' ')[1].split(' ')[1];
+				var gameName = MSG.split(' ')[1].split(' ')[1];
 				i=0;
 				do
 				{
@@ -118,14 +120,12 @@ client.on('message', (message) => {
 			}
 		}
 	}
-	if(message.content == "игрек приди")
+	if(MSG == "игрек приди")
 	{
-		var i = 0;
-		do
+		for(var i = 0; i < 10; i++)
 		{
 		message.channel.send("<@249859198605590528> ПРОСНИСЬ");
-		i++;
-		}while(i != 10);
+		}
 	}
 });
 
