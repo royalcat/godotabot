@@ -123,7 +123,7 @@ client.on('message', (message) => {
 		var i = 0;
 		do
 		{
-		message.channel.send("@igorigrik#4155 ПРОСНИСЬ");
+		message.channel.send("<@249859198605590528> ПРОСНИСЬ");
 		i++;
 		}while(i != 10);
 	}
