@@ -84,5 +84,26 @@ client.on('message', (message) => {
 		
 		message.channel.send("Go - префикс для всех команд, далее его не будет\n1.anime - кричит - Что поцаны Аниме? - в ваш голосовой чат\n2.dota (цифра) - зовет всех в доту нужное количество раз, но не более 10\n3.random coub - рандомный коуб\n4.Уди - выгоняет бота из голосового чата.");
 	}
+	
+	if(message.content.startsWith(prefix +" custom call "))
+	{
+		var i = 15;
+		var game = message.content.substr(15);
+		if(parseInt(message.content.replace(/\D+/g,"")) == null)
+		{
+			message.channel.send("Go" + game);
+		}
+		else
+		{
+			var num = parseInt(message.content.replace(/\D+/g,""));
+			var gameName = message.content.split(' ')[0];
+			i=0;
+			do
+			{
+				message.channel.send("Go" + game);
+				i++
+			}while(i != num)
+		}
+	}
 });
 
