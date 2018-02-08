@@ -118,9 +118,14 @@ client.on('message', (message) => {
 			}
 		}
 	}
-	if(message.content = "игрек приди")
+	if(message.content == "игрек приди")
 	{
+		var i = 0;
+		do
+		{
 		message.channel.send("@igorigrik#4155 ПРОСНИСЬ");
+		i++;
+		}while(i != 10);
 	}
 });
 
