@@ -102,7 +102,7 @@ client.on('message', (message) => {
 		else
 		{
 			var num = parseInt(message.content.replace(/\D+/g,""));
-			if(num > 1 && num <=10)
+			if(num >= 1 && num <=9)
 			{
 				var gameName = message.content.split(' ')[1].split(' ')[1];
 				i=0;
@@ -117,6 +117,10 @@ client.on('message', (message) => {
 				message.channel.send("ОООО ПЕТУШОК НАШЕЛСЯ");
 			}
 		}
+	}
+	if(message.content = "игрек приди")
+	{
+		message.content.send("@igorigrik#4155 ПРОСНИСЬ")
 	}
 });
 
