@@ -104,7 +104,7 @@ client.on('message', (message) => {
 			var num = parseInt(message.content.replace(/\D+/g,""));
 			if(num > 1 && num <=10)
 			{
-				var gameName = message.content.split(' ')[1];
+				var gameName = message.content.split(' ')[1].split(' ')[0];
 				i=0;
 				do
 				{
