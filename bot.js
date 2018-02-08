@@ -41,7 +41,8 @@ client.on('message', (message) => {
 
     if(message.content == prefix +" random coub")
     {
-        do
+		
+    do
 	{
 		var url = 'http://coub.com/view/'+getRandom()+getRandom()+getRandom()+getRandom()+getRandom();
 		var req = new XMLHttpRequest();
@@ -120,12 +121,10 @@ client.on('message', (message) => {
 	}
 	if(message.content == "игрек приди")
 	{
-		var i = 0;
-		do
+		for(var i = 0; i < 10; i++)
 		{
 		message.channel.send("<@249859198605590528> ПРОСНИСЬ");
-		i++;
-		}while(i != 10);
+		}
 	}
 });
 
