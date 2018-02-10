@@ -80,7 +80,7 @@ client.on('message', (message) => {
 		}
     }
 	
-	if(MSG == prefix +" PDT")
+	if(MSG == prefix +" pdt")
     {
 		if(message.member.voiceChannel != null)
 		{
