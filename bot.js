@@ -1,5 +1,4 @@
 ﻿const Discord = require("discord.js");
-var find = require('find');
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const client = new Discord.Client();
 var prefix = 'go'
