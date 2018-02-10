@@ -80,6 +80,23 @@ client.on('message', (message) => {
 		}
     }
 	
+	if(MSG == prefix +" PDT")
+    {
+		if(message.member.voiceChannel != null)
+		{
+			var voiceChannel = message.member.voiceChannel;
+			voiceChannel.join().then(connection =>{
+				const dispatcher = connection.playFile('./media/Toy.wav');
+				dispatcher.setVolume(1);
+			})
+			setTimeout(leaveVoice, 5000, voiceChannel);
+		}
+		else
+		{
+			message.channel.send("Pink dog toy");
+		}
+    }
+	
     if(MSG == "Уди")
     {
         var voiceChannel = message.member.voiceChannel;
