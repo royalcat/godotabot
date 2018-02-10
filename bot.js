@@ -69,7 +69,7 @@ client.on('message', (message) => {
 		{
 			var voiceChannel = message.member.voiceChannel;
 			voiceChannel.join().then(connection =>{
-				const dispatcher = connection.playFile('./media/vitas.wav');
+				const dispatcher = connection.playFile('./media/VITAS.wav');
 				dispatcher.setVolume(1);
 			})
 			setTimeout(leaveVoice, 5000, voiceChannel);
