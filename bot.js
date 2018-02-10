@@ -129,6 +129,23 @@ client.on('message', (message) => {
 			message.channel.send("Pink dog toy");
 		}
     }
+
+	if(MSG == prefix +" alah")
+    {
+		if(message.member.voiceChannel != null)
+		{
+			var voiceChannel = message.member.voiceChannel;
+			voiceChannel.join().then(connection =>{
+				const dispatcher = connection.playFile('./media/Allah.mp3');
+				dispatcher.setVolume(1);
+			})
+			setTimeout(leaveVoice, 5000, voiceChannel);
+		}
+		else
+		{
+			message.channel.send("ALAH AKBAR");
+		}
+    }
 	
     if(MSG == "Уди")
     {
