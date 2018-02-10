@@ -136,7 +136,7 @@ client.on('message', (message) => {
 		{
 			var voiceChannel = message.member.voiceChannel;
 			voiceChannel.join().then(connection =>{
-				const dispatcher = connection.playFile('./media/Allah.mp3');
+				const dispatcher = connection.playFile('./media/Alah.wav');
 				dispatcher.setVolume(1);
 			})
 			setTimeout(leaveVoice, 5000, voiceChannel);
