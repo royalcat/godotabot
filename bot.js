@@ -71,7 +71,7 @@ client.on('message', (message) => {
 		}
     }
 	
-	if(MSG == prefix +" anime")
+	if(MSG == prefix +" azino")
     {
 		if(message.member.voiceChannel != null)
 		{
