@@ -63,20 +63,20 @@ client.on('message', (message) => {
 		}
     }
 	
-	if(MSG == prefix +" azino")
+	if(MSG == prefix +" vitas")
     {
 		if(message.member.voiceChannel != null)
 		{
 			var voiceChannel = message.member.voiceChannel;
 			voiceChannel.join().then(connection =>{
-				const dispatcher = connection.playFile('./media/azino.wav');
+				const dispatcher = connection.playFile('./media/vitas.wav');
 				dispatcher.setVolume(1);
 			})
 			setTimeout(leaveVoice, 5000, voiceChannel);
 		}
 		else
 		{
-			message.channel.send("777");
+			message.channel.send("AAAAAAAA");
 		}
     }
 	
