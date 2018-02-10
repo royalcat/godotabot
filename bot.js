@@ -1,4 +1,5 @@
 ﻿const Discord = require("discord.js");
+var find = require('find');
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const client = new Discord.Client();
 var prefix = 'go'
@@ -67,6 +68,23 @@ client.on('message', (message) => {
 		else
 		{
 			message.channel.send("NEIN NEIN NEIN NEIN NEIN NEIN");
+		}
+    }
+	
+	if(MSG == prefix +" anime")
+    {
+		if(message.member.voiceChannel != null)
+		{
+			var voiceChannel = message.member.voiceChannel;
+			voiceChannel.join().then(connection =>{
+				const dispatcher = connection.playFile('./media/azino.wav');
+				dispatcher.setVolume(1);
+			})
+			setTimeout(leaveVoice, 5000, voiceChannel);
+		}
+		else
+		{
+			message.channel.send("777");
 		}
     }
 	
