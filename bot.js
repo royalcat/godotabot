@@ -67,11 +67,11 @@ client.on('message', (message) => {
 
     if(MSG.startsWith(prefix + " sound"))
     {
-		sound = "./media/" +MSG.split(' ')[2] + ".mp3";
-		soundFile(message, file, 5000);
+		var file = "./media/" +MSG.split(' ')[2] + ".mp3";
 		
 		mp3Duration(file, function (err, duration) {
-  			if (err) return console.log(err.message);
+			  if (err) return console.log(err.message);
+			  soundFile(message, file, duration);
 		});
 		
     }
