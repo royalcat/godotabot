@@ -19,7 +19,7 @@ function soundFile(message, fileName, soundLength, notCompleteMessage)
 		{
 			var voiceChannel = message.member.voiceChannel;
 			voiceChannel.join().then(connection =>{
-				const dispatcher = connection.playFile('./media/' + fileName);
+				var dispatcher = connection.playFile('./media/' + fileName);
 				dispatcher.setVolume(1);
 			})
 			setTimeout(leaveVoice, soundLength, voiceChannel);
@@ -65,7 +65,7 @@ client.on('message', (message) => {
 
     if(MSG == prefix +" anime")
     {
-		soundFile(message, "anime.mp3", 5, "Аниме - Говно")
+		soundFile(message, "anime.mp3", 5000, "Аниме - Говно")
     }
 	
 	if(MSG == prefix +" vitas")
