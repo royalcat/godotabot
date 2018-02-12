@@ -70,7 +70,7 @@ client.on('message', (message) => {
 		var mp3Duration = require('mp3-duration');
 		mp3Duration('file.mp3', function (err, duration) {
   			if (err) return console.log(err.message);
-  			soundFile(message, MSG.split[2], duration);
+  			soundFile(message, MSG.split(' ')[2], duration);
 });
 		
     }
