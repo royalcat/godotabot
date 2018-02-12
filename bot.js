@@ -1,5 +1,6 @@
 ﻿const Discord = require("discord.js");
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+var mp3Duration = require('mp3-duration');
 const client = new Discord.Client();
 var prefix = 'go'
 
@@ -19,7 +20,7 @@ function soundFile(message, fileName, soundLength)
 		{
 			var voiceChannel = message.member.voiceChannel;
 			voiceChannel.join().then(connection =>{
-				var dispatcher = connection.playFile('./media/' + fileName + '.mp3');
+				var dispatcher = connection.playFile(fileName);
 				dispatcher.setVolume(1);
 			})
 			setTimeout(leaveVoice, soundLength, voiceChannel);
@@ -66,12 +67,11 @@ client.on('message', (message) => {
 
     if(MSG.startsWith(prefix + " sound"))
     {
-		console.log(MSG.split(' ')[2]);
-		soundFile(message, "anime", 5000);
-		var mp3Duration = require('mp3-duration');
-		mp3Duration('file.mp3', function (err, duration) {
+		sound = "./media/" +MSG.split(' ')[2] + ".mp3";
+		soundFile(message, file, 5000);
+		
+		mp3Duration(file, function (err, duration) {
   			if (err) return console.log(err.message);
-  			
 		});
 		
     }
