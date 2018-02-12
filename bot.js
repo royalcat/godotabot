@@ -3,15 +3,32 @@ var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const client = new Discord.Client();
 var prefix = 'go'
 
-function getRandom()
+function getRandom(min, max)
 {
-    return Math.floor(Math.random() * 9) + 1;
+    return Math.floor(Math.random() * max) + min;
 }
+
 function leaveVoice(voiceChannel)
 {
     voiceChannel.leave();
 }
 
+function soundFile(message, fileName, soundLength, notCompleteMessage)
+{
+	if(message.member.voiceChannel != null)
+		{
+			var voiceChannel = message.member.voiceChannel;
+			voiceChannel.join().then(connection =>{
+				const dispatcher = connection.playFile('./media/' + fileName);
+				dispatcher.setVolume(1);
+			})
+			setTimeout(leaveVoice, soundLength, voiceChannel);
+		}
+		else
+		{
+			message.channel.send(notCompleteMessage);
+		}
+}
 client.login(process.env.BOT_TOKEN);
 
 client.on('message', (message) => {
@@ -42,31 +59,96 @@ client.on('message', (message) => {
 
     if(MSG == prefix +" random coub")
     {
-		
-    do
-	{
 		var url = 'http://coub.com/view/'+getRandom()+getRandom()+getRandom()+getRandom()+getRandom();
-		var req = new XMLHttpRequest();
-		req.open('GET', 'proxy.php?url='+url, false);
-	} while(req.find('Page not found') == -1)
-
-        message.channel.send(url);
+		message.channel.send(url);
     }
 
     if(MSG == prefix +" anime")
+    {
+		soundFile(message, "anime.mp3", 5, "Аниме - Говно")
+    }
+	
+	if(MSG == prefix +" vitas")
     {
 		if(message.member.voiceChannel != null)
 		{
 			var voiceChannel = message.member.voiceChannel;
 			voiceChannel.join().then(connection =>{
-				const dispatcher = connection.playFile('./media/anime.mp3');
+				const dispatcher = connection.playFile('./media/VITAS.wav');
 				dispatcher.setVolume(1);
 			})
 			setTimeout(leaveVoice, 5000, voiceChannel);
 		}
 		else
 		{
-			message.channel.send("NEIN NEIN NEIN NEIN NEIN NEIN");
+			message.channel.send("AAAAAAAA");
+		}
+    }
+	
+	if(MSG == prefix +" pdt")
+    {
+		if(message.member.voiceChannel != null)
+		{
+			var voiceChannel = message.member.voiceChannel;
+			voiceChannel.join().then(connection =>{
+				const dispatcher = connection.playFile('./media/Toy.wav');
+				dispatcher.setVolume(1);
+			})
+			setTimeout(leaveVoice, 5000, voiceChannel);
+		}
+		else
+		{
+			message.channel.send("Pink dog toy");
+		}
+    }
+	if(MSG == prefix +" i")
+    {
+		if(message.member.voiceChannel != null)
+		{
+			var voiceChannel = message.member.voiceChannel;
+			voiceChannel.join().then(connection =>{
+				const dispatcher = connection.playFile('./media/ilum.mp3');
+				dispatcher.setVolume(1);
+			})
+			setTimeout(leaveVoice, 5000, voiceChannel);
+		}
+		else
+		{
+			message.channel.send("ILUMMMMINATI");
+		}
+    }
+
+	if(MSG == prefix +" pognali")
+    {
+		if(message.member.voiceChannel != null)
+		{
+			var voiceChannel = message.member.voiceChannel;
+			voiceChannel.join().then(connection =>{
+				const dispatcher = connection.playFile('./media/pognali.wav');
+				dispatcher.setVolume(1);
+			})
+			setTimeout(leaveVoice, 5000, voiceChannel);
+		}
+		else
+		{
+			message.channel.send("nepognali");
+		}
+    }
+
+	if(MSG == prefix +" alah")
+    {
+		if(message.member.voiceChannel != null)
+		{
+			var voiceChannel = message.member.voiceChannel;
+			voiceChannel.join().then(connection =>{
+				const dispatcher = connection.playFile('./media/Alah.wav');
+				dispatcher.setVolume(1);
+			})
+			setTimeout(leaveVoice, 5000, voiceChannel);
+		}
+		else
+		{
+			message.channel.send("ALAH AKBAR");
 		}
     }
 	
