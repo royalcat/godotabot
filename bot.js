@@ -67,7 +67,7 @@ client.on('message', (message) => {
     if(MSG.startsWith(prefix + " sound"))
     {
 		console.log(MSG.split(' ')[2]);
-		soundFile(message, MSG.split()[2], 5000);
+		soundFile(message, "anime", 5000);
 		var mp3Duration = require('mp3-duration');
 		mp3Duration('file.mp3', function (err, duration) {
   			if (err) return console.log(err.message);
