@@ -71,7 +71,7 @@ client.on('message', (message) => {
 		
 		mp3Duration(file, function (err, duration) {
 			  if (err) return console.log(err.message);
-			  soundFile(message, file, duration);
+			  soundFile(message, file, duration*1000);
 		});
 		
     }
