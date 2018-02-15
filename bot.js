@@ -84,8 +84,9 @@ client.on('message', (message) => {
 		{
 			var fileName = MSG.split(' ')[3]
 			var file = fs.createWriteStream("./media/" + fileName);
-			var request = http.get(message.attachments.url, function (response) {
+			var request = http.get(message.attachments, function (response) {
 			response.pipe(file);
+			});
 		}
 		else
 		{
