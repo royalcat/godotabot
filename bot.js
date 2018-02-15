@@ -1,4 +1,6 @@
 ﻿const Discord = require("discord.js");
+var http = require('http');
+var fs = require('fs');
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var mp3Duration = require('mp3-duration');
 const client = new Discord.Client();
@@ -75,6 +77,21 @@ client.on('message', (message) => {
 		});
 		
     }
+	
+	if(MSG.startsWith(prefix + " load sound")
+	{
+		if(message.attachments != null)
+		{
+			var fileName = MSG.split(' ')[3]
+			var file = fs.createWriteStream("./media/" + fileName);
+			var request = http.get(message.attachments.url, function (response) {
+			response.pipe(file);
+		}
+		else
+		{
+			message.channel.send("Хде?");
+		}
+	}
 	
     if(MSG == "Уди")
     {
