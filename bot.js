@@ -74,11 +74,10 @@ client.on('message', (message) => {
 		mp3Duration(file, function (err, duration) {
 			  if (err) return console.log(err.message);
 			  soundFile(message, file, duration*1000);
-		});
-		
+		});		
     }
 	
-	if(MSG.startsWith(prefix + " load sound")
+	if(MSG.startsWith(prefix + " load sound"))
 	{
 		if(message.attachments != null)
 		{
