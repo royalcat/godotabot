@@ -81,8 +81,8 @@ client.on('message', (message) => {
 	if(MSG.startsWith(prefix + " load sound"))
 	{
 		
-		console.log(message.attachments.url);
-		if(!util.isNullOrUndefined(message.attachments.url))
+		console.log(message.attachments[1].url);
+		if(!util.isNullOrUndefined(message.attachments[1].url))
 		{
 			var fileName = MSG.split(' ')[3];
 			console.log(fileName);
