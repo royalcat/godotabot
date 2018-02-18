@@ -79,18 +79,20 @@ client.on('message', (message) => {
 	
 	if(MSG.startsWith(prefix + " load sound"))
 	{
-		if(message.attachments != null)
-		{
-			var fileName = MSG.split(' ')[3]
-			var file = fs.createWriteStream("./media/" + fileName);
-			var request = http.get(message.attachments, function (response) {
-			response.pipe(file);
-			});
-		}
-		else
-		{
-			message.channel.send("Хде?");
-		}
+		console.log(message.attachments.url);
+		
+		//if(message.attachments != null)
+		//{
+		//	var fileName = MSG.split(' ')[3]
+		//	var file = fs.createWriteStream("./media/" + fileName);
+		//	var request = http.get(message.attachments, function (response) {
+		//	response.pipe(file);
+		//	});
+		//}
+		//else
+		//{
+		//	message.channel.send("Хде?");
+		//}
 	}
 	
     if(MSG == "Уди")
