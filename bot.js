@@ -1,5 +1,4 @@
-﻿import { isNullOrUndefined } from "util";
-
+﻿const util = require('util');
 const Discord = require("discord.js");
 var http = require('http');
 var fs = require('fs');
@@ -83,7 +82,7 @@ client.on('message', (message) => {
 	{
 		
 		
-		if(!isNullOrUndefined(message.attachments.url))
+		if(!util.isNullOrUndefined(message.attachments.url))
 		{
 			var fileName = MSG.split(' ')[3];
 			console.log(fileName);

@@ -19,6 +19,7 @@
     "node-opus": "^0.2.7",
     "opusscript": "0.0.6",
     "tar": "^4.3.2",
+    "util": "^0.10.3",
     "xmlhttprequest": "^1.8.0"
   }
 }
