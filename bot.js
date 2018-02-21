@@ -215,20 +215,14 @@ client.on('message', (message) => {
 	}
 	if(MSG == "выкопать зерга")
 	{
-		isTimerS = true;
-		console.log(isTimerS);
-	}
-
-	console.log(isTimerS);
-	if(isTimerS == true && dt.getSeconds%10 == 0)
-	{
-		console.log(isTimerS);
-		message.channel.send("<@248082882000715776> выкопайся");
-		j++;
-		if(j == 10)
+		do
 		{
-			isTimerS = false;
+		if(dt.getSeconds%10 == 0)
+		{
+			message.channel.send("<@248082882000715776> выкопайся");
+			j++;
 		}
+		}while(j != 10);
 	}
 });
 
