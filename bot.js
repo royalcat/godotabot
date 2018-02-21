@@ -214,7 +214,8 @@ client.on('message', (message) => {
 	}
 	if(MSG == "выкопать зерга")
 	{
-		isTimerS = true
+		isTimerS = true;
+		console.log(isTimerS);
 	}
 
 	if(isTimerS && dt.getSeconds%10 == 0)
