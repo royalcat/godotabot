@@ -219,6 +219,7 @@ client.on('message', (message) => {
 		console.log(isTimerS);
 	}
 
+	console.log(isTimerS);
 	if(isTimerS == true && dt.getSeconds%10 == 0)
 	{
 		console.log(isTimerS);
