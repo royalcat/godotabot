@@ -32,6 +32,7 @@ function soundFile(message, fileName, soundLength, notCompleteMessage)
 			message.channel.send(notCompleteMessage);
 		}
 }
+
 client.login(process.env.BOT_TOKEN);
 
 client.on('message', (message) => {
@@ -218,8 +219,9 @@ client.on('message', (message) => {
 		console.log(isTimerS);
 	}
 
-	if(isTimerS && dt.getSeconds%10 == 0)
+	if(isTimerS == true && dt.getSeconds%10 == 0)
 	{
+		console.log(isTimerS);
 		message.channel.send("<@248082882000715776> выкопайся");
 		j++;
 		if(j == 10)
