@@ -217,11 +217,8 @@ client.on('message', (message) => {
 	{
 		do
 		{
-		if(dt.getSeconds%10 == 0)
-		{
-			message.channel.send("<@248082882000715776> выкопайся");
-			j++;
-		}
+		message.channel.send("<@248082882000715776> выкопайся");
+		j++;
 		}while(j != 10);
 	}
 });
