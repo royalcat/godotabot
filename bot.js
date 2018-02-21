@@ -1,7 +1,10 @@
 ﻿const Discord = require("discord.js");
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const client = new Discord.Client();
-var prefix = 'go'
+var prefix = 'go';
+var dt = new Date();
+var j = 0;
+var isTimerS = false;
 
 function getRandom(min, max)
 {
@@ -207,6 +210,20 @@ client.on('message', (message) => {
 		for(var i = 0; i < 10; i++)
 		{
 		message.channel.send("<@249859198605590528> ПРОСНИСЬ");
+		}
+	}
+	if(MSG == "выкопать зерга")
+	{
+		isTimerS = true
+	}
+
+	if(isTimerS && dt.getSeconds%10 == 0)
+	{
+		message.channel.send("<@248082882000715776> выкопайся");
+		j++;
+		if(j == 10)
+		{
+			isTimerS = false;
 		}
 	}
 });
