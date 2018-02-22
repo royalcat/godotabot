@@ -46,7 +46,7 @@ client.on('message', (message) => {
         {
             var i = 0;
             var num = parseInt(MSG.replace(/\D+/g,""));
-            if(num > 0 && num < 11)
+            if(num > 0 && num < 11 && num != null)
             {
                 while(i != num)
                 {
