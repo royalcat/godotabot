@@ -71,9 +71,9 @@ client.on('message', (message) => {
 
     if(MSG.startsWith("gs"))
     {
-		if(MSG.split(' ')[2] == "play")
+		if(MSG.split(' ')[1] == "play")
 		{
-			var file = "./media/" +MSG.split(' ')[3] + ".mp3";
+			var file = "./media/" +MSG.split(' ')[2] + ".mp3";
 			
 			mp3Duration(file, function (err, duration) {
 				if (err) return console.log(err.message);
@@ -81,7 +81,7 @@ client.on('message', (message) => {
 			});
 		}
 
-		if(MSG.split(' ')[2] == "load")
+		if(MSG.split(' ')[1] == "load")
 		{
 			if(message.attachments.size == 1)
 			{
@@ -89,7 +89,7 @@ client.on('message', (message) => {
 				var fileUrl = attachment[0].url;
 				var urlLeight = fileUrl.length; 
 
-				var fileName = MSG.split(' ')[3];
+				var fileName = MSG.split(' ')[2];
 				if(fileUrl[urlLeight-1] == '3' && fileUrl[urlLeight-2] == 'p' && fileUrl[urlLeight-3] == 'm' && fileUrl[urlLeight-4] == '.') // быдлокод рулит
 				{
 					var file = fs.createWriteStream("./media/" + fileName + ".mp3");
@@ -108,7 +108,7 @@ client.on('message', (message) => {
 			}
 		}
 
-		if(MSG.split(' ')[2] == "list")
+		if(MSG.split(' ')[1] == "list")
 		{
 			var path = "./media/";
 			var listMsg = "";
