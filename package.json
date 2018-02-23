@@ -14,6 +14,7 @@
     "ffmpeg": "0.0.4",
     "ffmpeg-binaries": "^3.2.2-3",
     "find": "^0.2.9",
+    "fs": "0.0.1-security",
     "http": "0.0.0",
     "mp3-duration": "^1.1.0",
     "node-opus": "^0.2.7",
