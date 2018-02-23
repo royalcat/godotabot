@@ -1,6 +1,7 @@
 ﻿const util = require('util');
 const Discord = require("discord.js");
 var http = require('http');
+const https = require('https');
 var fs = require('fs');
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var mp3Duration = require('mp3-duration');
@@ -74,30 +75,54 @@ client.on('message', (message) => {
 		var file = "./media/" +MSG.split(' ')[2] + ".mp3";
 		
 		mp3Duration(file, function (err, duration) {
-			  if (err) return console.log(err.message);
-			  soundFile(message, file, duration*1000);
+			if (err) return console.log(err.message);
+			if(duration*1000 < 10)
+			{
+				soundFile(message, file, duration*1000);
+			}
 		});		
     }
 	
-	if(MSG.startsWith(prefix + " load sound"))
+	if(MSG.startsWith(prefix + " sound load"))
 	{
-		
-		console.log(message.attachments[0].url);
-		//if(!util.isNullOrUndefined(message.attachments[0].url))
-		//{
-		//	var fileName = MSG.split(' ')[3];
-		//	console.log(fileName);
-		//	var file = fs.createWriteStream("./media/" + fileName);
-		//	var request = http.get(message.attachments, function (response) {
-		//	response.pipe(file);
-		//	});
-		//}
-		//else
-		//{
-		//	message.channel.send("Хде?");
-		//}
+		if(message.attachments.size == 1)
+		{
+			var attachment = (message.attachments).array();
+			var fileUrl = attachment[0].url;
+			var urlLeight = fileUrl.length; 
+
+			var fileName = MSG.split(' ')[3];
+			if(fileUrl[urlLeight-1] == '3' && fileUrl[urlLeight-2] == 'p' && fileUrl[urlLeight-3] == 'm' && fileUrl[urlLeight-4] == '.') // быдлокод рулит
+			{
+				var file = fs.createWriteStream("./media/" + fileName + ".mp3");
+				var request = https.get(fileUrl, function (response) {
+				response.pipe(file);
+				});
+			}
+			else
+			{
+				message.channel.send("не тот формат");
+			}
+		}
+		else
+		{
+			message.channel.send("не подходит");
+		}
 	}
-	
+
+	if(MSG == prefix +  " slist")
+	{
+		var path = "./media/";
+		var listMsg = "";
+		fs.readdir(path, function(err, items) {
+			for (var i=0; i<items.length; i++) {
+				listMsg += items[i];
+			}
+		});
+		console.log(listMsg);
+		//message.channel.send(listMsg);
+	}
+
     if(MSG == "Уди")
     {
         var voiceChannel = message.member.voiceChannel;
@@ -112,13 +137,26 @@ client.on('message', (message) => {
 	if(MSG == prefix + " help")
 	{
 		var commands =[];
-		commands[0] = "Go - префикс для всех команд, далее его не будет\n";
-		commands[1] = "1.anime - кричит - Что поцаны Аниме? - в ваш голосовой чат\n"
-		commands[2] = "2.dota (цифра) - зовет всех в доту нужное количество раз, но не более 10\n"
-		commands[3] = "3.random coub - рандомный коуб\n"
-		commands[4] = "4.custom call (название) (число) зовет всех в заданное название\n"
-		
-		message.channel.send(commands[0]+commands[1]+commands[2]+commands[3]+commands[4]);
+		if(MSG.split(' ')[2] === null)
+		{
+			commands[0] = "Go dota (цифра) - зовет всех в доту нужное количество раз, но не более 10\n"
+			commands[1] = "Go random coub - рандомный коуб\n"
+			commands[2] = "Go custom call (название) (число) зовет всех в заданное название\n"
+			commands[3] = "Go ping - Go pong\n"
+			commands[4] = "Go help sound - помошь по звукам\n"
+			commands[5] = "Go help fun - всякая всячина\n"
+			var text = commands[0]+commands[1]+commands[2]+commands[3]; 
+			message.channel.send(normalHelp);
+		}
+		if(MSG.split(' ')[2] == "sound")
+		{
+			commands
+		}
+		if(MSG.split(' ')[2] == "fun")
+		{
+			
+		}
+
 	}
 	
 	if(MSG.startsWith(prefix +" custom call "))
