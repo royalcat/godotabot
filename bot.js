@@ -23,7 +23,7 @@ function soundFile(message, fileName, soundLength, notCompleteMessage)
 		{
 			var voiceChannel = message.member.voiceChannel;
 			voiceChannel.join().then(connection =>{
-				var dispatcher = connection.playFile('./media/' + fileName);
+				var dispatcher = connection.playFile(fileName);
 				dispatcher.setVolume(1);
 			})
 			setTimeout(leaveVoice, soundLength, voiceChannel);
