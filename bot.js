@@ -24,7 +24,7 @@ function soundFile(message, fileName, soundLength)
 		{
 			var voiceChannel = message.member.voiceChannel;
 			voiceChannel.join().then(connection =>{
-				var dispatcher = connection.playFile(fileName);
+				var dispatcher = connection.playFile(./media/fileName);
 				dispatcher.setVolume(1);
 			})
 			setTimeout(leaveVoice, soundLength, voiceChannel);
@@ -40,6 +40,7 @@ client.login('NDA5OTYwNTgxODk0NzY2NjA1.DWtHig.xaTgFYmG6aOIVh6jtEEXzR8T8Us');
 
 client.on('message', (message) => {
 	var MSG = message.content.toLowerCase();
+
     if(MSG.startsWith(prefix +" dota")) {
         if(MSG.length <= 8)
         {
@@ -72,56 +73,57 @@ client.on('message', (message) => {
 
     if(MSG.startsWith(prefix + " sound"))
     {
-		var file = "./media/" +MSG.split(' ')[2] + ".mp3";
-		
-		mp3Duration(file, function (err, duration) {
-			if (err) return console.log(err.message);
-			if(duration*1000 < 10)
-			{
-				soundFile(message, file, duration*1000);
-			}
-		});		
-    }
-	
-	if(MSG.startsWith(prefix + " sound load"))
-	{
-		if(message.attachments.size == 1)
+		if(MSG.split(' ')[2] == "play")
 		{
-			var attachment = (message.attachments).array();
-			var fileUrl = attachment[0].url;
-			var urlLeight = fileUrl.length; 
+			var file = "./media/" +MSG.split(' ')[3] + ".mp3";
+			
+			mp3Duration(file, function (err, duration) {
+				if (err) return console.log(err.message);
+				soundFile(message, file, duration*1000);
+			});
+		}
 
-			var fileName = MSG.split(' ')[3];
-			if(fileUrl[urlLeight-1] == '3' && fileUrl[urlLeight-2] == 'p' && fileUrl[urlLeight-3] == 'm' && fileUrl[urlLeight-4] == '.') // быдлокод рулит
+		if(MSG.split(' ')[2] == "load")
+		{
+			if(message.attachments.size == 1)
 			{
-				var file = fs.createWriteStream("./media/" + fileName + ".mp3");
-				var request = https.get(fileUrl, function (response) {
-				response.pipe(file);
-				});
+				var attachment = (message.attachments).array();
+				var fileUrl = attachment[0].url;
+				var urlLeight = fileUrl.length; 
+
+				var fileName = MSG.split(' ')[3];
+				if(fileUrl[urlLeight-1] == '3' && fileUrl[urlLeight-2] == 'p' && fileUrl[urlLeight-3] == 'm' && fileUrl[urlLeight-4] == '.') // быдлокод рулит
+				{
+					var file = fs.createWriteStream("./media/" + fileName + ".mp3");
+					var request = https.get(fileUrl, function (response) {
+					response.pipe(file);
+					});
+				}
+				else
+				{
+					message.channel.send("не тот формат");
+				}
 			}
 			else
 			{
-				message.channel.send("не тот формат");
+				message.channel.send("не подходит");
 			}
 		}
-		else
-		{
-			message.channel.send("не подходит");
-		}
-	}
 
-	if(MSG == prefix +  " slist")
-	{
-		var path = "./media/";
-		var listMsg = "";
-		fs.readdir(path, function(err, items) {
-			for (var i=0; i<items.length; i++) {
-				listMsg += items[i];
-			}
-		});
-		console.log(listMsg);
-		//message.channel.send(listMsg);
-	}
+		if(MSG.split(' ')[2] == "list")
+		{
+			var path = "./media/";
+			var listMsg = "";
+			fs.readdir(path, function(err, items) 
+			{
+				for (var i=0; i<items.length; i++) 
+				{				
+					listMsg = listMsg + items[i].split('.')[0] +"\n";
+				}
+				message.channel.send(listMsg);
+			});		
+		}		
+    }
 
     if(MSG == "Уди")
     {
@@ -137,6 +139,7 @@ client.on('message', (message) => {
 	if(MSG == prefix + " help")
 	{
 		var commands =[];
+		var text = "";
 		if(MSG.split(' ')[2] === null)
 		{
 			commands[0] = "Go dota (цифра) - зовет всех в доту нужное количество раз, но не более 10\n"
@@ -145,18 +148,22 @@ client.on('message', (message) => {
 			commands[3] = "Go ping - Go pong\n"
 			commands[4] = "Go help sound - помошь по звукам\n"
 			commands[5] = "Go help fun - всякая всячина\n"
-			var text = commands[0]+commands[1]+commands[2]+commands[3]; 
-			message.channel.send(normalHelp);
+			text = commands[0]+commands[1]+commands[2]+commands[3]; 
 		}
 		if(MSG.split(' ')[2] == "sound")
 		{
-			commands
+			commands[0] = "Go sound play (название файла) - воспроизвести файл в войс\n"
+			commands[1] = "Go sound load (название файла) - зайлить файл на сервер (сбросится после обновы, возможно)\n"
+			commands[2] = "Go sound list - список файлов в директории\n"
+			text = commands[0] + commands[1] + commands[2];
 		}
 		if(MSG.split(' ')[2] == "fun")
 		{
-			
+			commands[0] = "выкопать зерга"
+			commands[1] = "игрек приди"
+			text = commands[0] + commands[1];
 		}
-
+		message.channel.send(text);
 	}
 	
 	if(MSG.startsWith(prefix +" custom call "))
@@ -194,4 +201,3 @@ client.on('message', (message) => {
 		}
 	}
 });
-
