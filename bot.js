@@ -1,9 +1,7 @@
-﻿const util = require('util');
-const Discord = require("discord.js");
+﻿const Discord = require("discord.js");
 var http = require('http');
 const https = require('https');
 var fs = require('fs');
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var mp3Duration = require('mp3-duration');
 const client = new Discord.Client();
 var prefix = 'go';
