@@ -69,7 +69,7 @@ client.on('message', (message) => {
 		message.channel.send(url);
     }
 
-    if(MSG.startsWith(prefix + " sound") || MSG.startsWith("gs"))
+    if(MSG.startsWith("gs"))
     {
 		if(MSG.split(' ')[2] == "play")
 		{
@@ -77,7 +77,7 @@ client.on('message', (message) => {
 			
 			mp3Duration(file, function (err, duration) {
 				if (err) return console.log(err.message);
-				soundFile(message, file, duration*1000);
+				soundFile(message, file, duration*1000+2);
 			});
 		}
 
