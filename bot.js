@@ -36,8 +36,7 @@ function soundFile(message, fileName, soundLength, notCompleteMessage)
 		}
 }
 
-//client.login(process.env.BOT_TOKEN);
-client.login('NDA5OTYwNTgxODk0NzY2NjA1.DWtHig.xaTgFYmG6aOIVh6jtEEXzR8T8Us');
+client.login(process.env.BOT_TOKEN);
 
 client.on('message', (message) => {
 	var MSG = message.content.toLowerCase();
