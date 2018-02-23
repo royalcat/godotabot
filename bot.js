@@ -3,8 +3,6 @@ var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const client = new Discord.Client();
 var prefix = 'go';
 var dt = new Date();
-var j = 0;
-var isTimerS = false;
 
 function getRandom(min, max)
 {
@@ -215,11 +213,8 @@ client.on('message', (message) => {
 	}
 	if(MSG == "выкопать зерга")
 	{
-		do
-		{
-		message.channel.send("<@248082882000715776> выкопайся");
-		j++;
-		}while(j != 10);
+		for(int i = 0; i<10; i++)
+			message.channel.send("<@248082882000715776> выкопайся");
 	}
 });
 
