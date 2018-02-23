@@ -69,7 +69,7 @@ client.on('message', (message) => {
 		message.channel.send(url);
     }
 
-    if(MSG.startsWith(prefix + " sound"))
+    if(MSG.startsWith(prefix + " sound") || MSG.startsWith("gs"))
     {
 		if(MSG.split(' ')[2] == "play")
 		{
