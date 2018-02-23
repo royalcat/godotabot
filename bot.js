@@ -5,7 +5,8 @@ var fs = require('fs');
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var mp3Duration = require('mp3-duration');
 const client = new Discord.Client();
-var prefix = 'go'
+var prefix = 'go';
+var dt = new Date();
 
 function getRandom(min, max)
 {
@@ -17,13 +18,13 @@ function leaveVoice(voiceChannel)
     voiceChannel.leave();
 }
 
-function soundFile(message, fileName, soundLength)
+function soundFile(message, fileName, soundLength, notCompleteMessage)
 {
 	if(message.member.voiceChannel != null)
 		{
 			var voiceChannel = message.member.voiceChannel;
 			voiceChannel.join().then(connection =>{
-				var dispatcher = connection.playFile(fileName);
+				const dispatcher = connection.playFile('./media/' + fileName);
 				dispatcher.setVolume(1);
 			})
 			setTimeout(leaveVoice, soundLength, voiceChannel);
@@ -47,7 +48,7 @@ client.on('message', (message) => {
         {
             var i = 0;
             var num = parseInt(MSG.replace(/\D+/g,""));
-            if(num > 0 && num < 11)
+            if(num > 0 && num < 11 && num != null)
             {
                 while(i != num)
                 {
@@ -152,6 +153,13 @@ client.on('message', (message) => {
 		for(var i = 0; i < 10; i++)
 		{
 		message.channel.send("<@249859198605590528> ПРОСНИСЬ");
+		}
+	}
+	if(MSG == "выкопать зерга")
+	{
+		for(var i = 0; i<10; i++)
+		{
+			message.channel.send("<@248082882000715776> выкопайся");
 		}
 	}
 });
