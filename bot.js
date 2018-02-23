@@ -1,5 +1,9 @@
-﻿const Discord = require("discord.js");
+﻿const util = require('util');
+const Discord = require("discord.js");
+var http = require('http');
+var fs = require('fs');
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+var mp3Duration = require('mp3-duration');
 const client = new Discord.Client();
 var prefix = 'go';
 var dt = new Date();
@@ -27,7 +31,7 @@ function soundFile(message, fileName, soundLength, notCompleteMessage)
 		}
 		else
 		{
-			message.channel.send(notCompleteMessage);
+			message.channel.send("NEIN NEIN NEIN NEIN NEIN NEIN");
 		}
 }
 
@@ -65,94 +69,34 @@ client.on('message', (message) => {
 		message.channel.send(url);
     }
 
-    if(MSG == prefix +" anime")
+    if(MSG.startsWith(prefix + " sound"))
     {
-		soundFile(message, "anime.mp3", 5, "Аниме - Говно")
+		var file = "./media/" +MSG.split(' ')[2] + ".mp3";
+		
+		mp3Duration(file, function (err, duration) {
+			  if (err) return console.log(err.message);
+			  soundFile(message, file, duration*1000);
+		});		
     }
 	
-	if(MSG == prefix +" vitas")
-    {
-		if(message.member.voiceChannel != null)
+	if(MSG.startsWith(prefix + " load sound"))
+	{
+		
+		console.log(message.attachments[0].url);
+		if(!util.isNullOrUndefined(message.attachments[0].url))
 		{
-			var voiceChannel = message.member.voiceChannel;
-			voiceChannel.join().then(connection =>{
-				const dispatcher = connection.playFile('./media/VITAS.wav');
-				dispatcher.setVolume(1);
-			})
-			setTimeout(leaveVoice, 5000, voiceChannel);
+			var fileName = MSG.split(' ')[3];
+			console.log(fileName);
+		//	var file = fs.createWriteStream("./media/" + fileName);
+		//	var request = http.get(message.attachments, function (response) {
+		//	response.pipe(file);
+		//	});
 		}
 		else
 		{
-			message.channel.send("AAAAAAAA");
+			message.channel.send("Хде?");
 		}
-    }
-	
-	if(MSG == prefix +" pdt")
-    {
-		if(message.member.voiceChannel != null)
-		{
-			var voiceChannel = message.member.voiceChannel;
-			voiceChannel.join().then(connection =>{
-				const dispatcher = connection.playFile('./media/Toy.wav');
-				dispatcher.setVolume(1);
-			})
-			setTimeout(leaveVoice, 5000, voiceChannel);
-		}
-		else
-		{
-			message.channel.send("Pink dog toy");
-		}
-    }
-	if(MSG == prefix +" i")
-    {
-		if(message.member.voiceChannel != null)
-		{
-			var voiceChannel = message.member.voiceChannel;
-			voiceChannel.join().then(connection =>{
-				const dispatcher = connection.playFile('./media/ilum.mp3');
-				dispatcher.setVolume(1);
-			})
-			setTimeout(leaveVoice, 5000, voiceChannel);
-		}
-		else
-		{
-			message.channel.send("ILUMMMMINATI");
-		}
-    }
-
-	if(MSG == prefix +" pognali")
-    {
-		if(message.member.voiceChannel != null)
-		{
-			var voiceChannel = message.member.voiceChannel;
-			voiceChannel.join().then(connection =>{
-				const dispatcher = connection.playFile('./media/pognali.wav');
-				dispatcher.setVolume(1);
-			})
-			setTimeout(leaveVoice, 5000, voiceChannel);
-		}
-		else
-		{
-			message.channel.send("nepognali");
-		}
-    }
-
-	if(MSG == prefix +" alah")
-    {
-		if(message.member.voiceChannel != null)
-		{
-			var voiceChannel = message.member.voiceChannel;
-			voiceChannel.join().then(connection =>{
-				const dispatcher = connection.playFile('./media/Alah.wav');
-				dispatcher.setVolume(1);
-			})
-			setTimeout(leaveVoice, 5000, voiceChannel);
-		}
-		else
-		{
-			message.channel.send("ALAH AKBAR");
-		}
-    }
+	}
 	
     if(MSG == "Уди")
     {
