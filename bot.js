@@ -123,7 +123,7 @@ client.on('message', (message) => {
 		}		
     }
 
-    if(MSG == "Уди")
+    if(MSG == "уди")
     {
         var voiceChannel = message.member.voiceChannel;
         voiceChannel.leave();
@@ -159,7 +159,7 @@ client.on('message', (message) => {
 			commands[3] = "Go ping - Go pong\n"
 			commands[4] = "Go help sound - помошь по звукам\n"
 			commands[5] = "Go help fun - всякая всячина\n"
-			text = commands[0]+commands[1]+commands[2]+commands[3]; 
+			text = commands[0]+commands[1]+commands[2]+commands[3]+commands[4]+commands[5]; 
 		}
 		message.channel.send(text);
 	}
