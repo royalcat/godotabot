@@ -134,7 +134,7 @@ client.on('message', (message) => {
 		message.channel.send("Go pong");
 	}
 	
-	if(MSG == prefix + " help")
+	if(MSG.startsWith(prefix + " help"))
 	{
 		var commands =[];
 		var text = "";
