@@ -39,7 +39,8 @@ client.login(process.env.BOT_TOKEN);
 client.on('message', (message) => {
 	var MSG = message.content.toLowerCase();
 
-    if(MSG.startsWith(prefix +" dota")) {
+	if(MSG.startsWith(prefix +" dota"))
+	{
         if(MSG.length <= 8)
         {
             message.channel.send("@everyone го дота");   
@@ -77,7 +78,7 @@ client.on('message', (message) => {
 			
 			mp3Duration(file, function (err, duration) {
 				if (err) return console.log(err.message);
-				soundFile(message, file, duration*1000+2);
+				soundFile(message, file, duration*1000+2000);
 			});
 		}
 
@@ -121,7 +122,61 @@ client.on('message', (message) => {
 				message.channel.send(listMsg);
 			});		
 		}		
-    }
+	}
+
+	if(MSG.startsWith("gm"))
+    {
+		if(MSG.split(' ')[1] == "play")
+		{
+			var file = "./music/" +MSG.split(' ')[2] + ".mp3";
+			
+			mp3Duration(file, function (err, duration) {
+				if (err) return console.log(err.message);
+				soundFile(message, file, duration*1000+2000);
+			});
+		}
+
+		if(MSG.split(' ')[1] == "load")
+		{
+			if(message.attachments.size == 1)
+			{
+				var attachment = (message.attachments).array();
+				var fileUrl = attachment[0].url;
+				var urlLeight = fileUrl.length; 
+
+				var fileName = MSG.split(' ')[2];
+				if(fileUrl[urlLeight-1] == '3' && fileUrl[urlLeight-2] == 'p' && fileUrl[urlLeight-3] == 'm' && fileUrl[urlLeight-4] == '.') // быдлокод рулит
+				{
+					var file = fs.createWriteStream("./music/" + fileName + ".mp3");
+					var request = https.get(fileUrl, function (response) {
+					response.pipe(file);
+					});
+				}
+				else
+				{
+					message.channel.send("не тот формат");
+				}
+			}
+			else
+			{
+				message.channel.send("не подходит");
+			}
+		}
+
+		if(MSG.split(' ')[1] == "list")
+		{
+			var path = "./music/";
+			var listMsg = "";
+			fs.readdir(path, function(err, items) 
+			{
+				for (var i=0; i<items.length; i++) 
+				{				
+					listMsg = listMsg + items[i].split('.')[0] +"\n";
+				}
+				message.channel.send(listMsg);
+			});		
+		}
+	
 
     if(MSG == "уди")
     {
