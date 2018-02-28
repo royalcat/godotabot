@@ -138,16 +138,6 @@ client.on('message', (message) => {
 	{
 		var commands =[];
 		var text = "";
-		if(MSG.split(' ')[2] === null)
-		{
-			commands[0] = "Go dota (цифра) - зовет всех в доту нужное количество раз, но не более 10\n"
-			commands[1] = "Go random coub - рандомный коуб\n"
-			commands[2] = "Go custom call (название) (число) зовет всех в заданное название\n"
-			commands[3] = "Go ping - Go pong\n"
-			commands[4] = "Go help sound - помошь по звукам\n"
-			commands[5] = "Go help fun - всякая всячина\n"
-			text = commands[0]+commands[1]+commands[2]+commands[3]; 
-		}
 		if(MSG.split(' ')[2] == "sound")
 		{
 			commands[0] = "Go sound play (название файла) - воспроизвести файл в войс\n"
@@ -160,6 +150,16 @@ client.on('message', (message) => {
 			commands[0] = "выкопать зерга"
 			commands[1] = "игрек приди"
 			text = commands[0] + commands[1];
+		}
+		else
+		{
+			commands[0] = "Go dota (цифра) - зовет всех в доту нужное количество раз, но не более 10\n"
+			commands[1] = "Go random coub - рандомный коуб\n"
+			commands[2] = "Go custom call (название) (число) зовет всех в заданное название\n"
+			commands[3] = "Go ping - Go pong\n"
+			commands[4] = "Go help sound - помошь по звукам\n"
+			commands[5] = "Go help fun - всякая всячина\n"
+			text = commands[0]+commands[1]+commands[2]+commands[3]; 
 		}
 		message.channel.send(text);
 	}
