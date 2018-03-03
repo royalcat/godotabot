@@ -256,7 +256,7 @@ client.on('message', (message) =>
 	{
 		var url = "https://www.pornhub.com/view_video.php?viewkey=ph5";
 		for(var i = 0; i<12; i++)
-			url = url + alf[random(1, 35)];
+			url = url + alf[getRandom(1, 35)];
 		message.author.send(url);
 	}
 
