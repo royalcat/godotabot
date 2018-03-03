@@ -210,6 +210,7 @@ client.on('message', (message) =>
 		}
 		else
 		{
+			message.channel.send("Основые команды бота:");
 			commands[0] = "Go dota (цифра) - зовет всех в доту нужное количество раз, но не более 10\n"
 			commands[1] = "Go random coub - рандомный коуб\n"
 			commands[2] = "Go custom call (название) (число) зовет всех в заданное название\n"
@@ -256,7 +257,7 @@ client.on('message', (message) =>
 		message.channel.send("<@249859198605590528> ПРОСНИСЬ");
 		}
 	}
-	
+
 	if(MSG == "выкопать зерга")
 	{
 		for(var i = 0; i<10; i++)
