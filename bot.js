@@ -3,17 +3,13 @@ var http = require('http');
 const https = require('https');
 var fs = require('fs');
 var mp3Duration = require('mp3-duration');
-var static = require('node-static');
-//var body = require("./index.html")
 
 const client = new Discord.Client();
 var dt = new Date();
 
 var prefix = 'go';
 var alf = "0123456789abcdefghijklmnopqrstuvwxyz";
-var siteMSGtext = "";
-var isMSGFromSite = "";
-var lastChannel;
+
 
 function getRandom(min, max)
 {
@@ -274,33 +270,4 @@ client.on('message', (message) =>
 			message.channel.send("<@248082882000715776> выкопайся");
 		}
 	}
-	lastChannel = message.channel;
 });
-
-var port = process.env.PORT || 5000;
-
-http.createServer(function(request, response) {
-	var postData = "";
-	var body = '<html>'+
-		'<head>'+
-		'<meta http-equiv="Content-Type" content="text/html; '+
-		'charset=UTF-8" />'+
-		'</head>'+
-		'<body>'+
-		'<form action="/upload" method="post">'+
-		'<textarea name="text" rows="20" cols="60"></textarea>'+
-		'<input type="submit" value="Submit text" />'+
-		'</form>'+
-		'</body>'+
-		'</html>';
-	response.writeHead(200, {
-		"Content-Type": "text/html",
-		"charset" : "UTF-8"
-		});
-	response.write(body);
-	request.addListener("data", function(postDataChunk) {
-		postData += postDataChunk;
-		lastChannel.send(postDataChunk);
-	});
-	//response.end();
-}).listen(port);
