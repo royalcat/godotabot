@@ -22,10 +22,12 @@ function soundFile(message, fileName, soundLength, notCompleteMessage)
 	if(message.member.voiceChannel != null)
 		{
 			var voiceChannel = message.member.voiceChannel;
-			voiceChannel.join().then(connection =>{
-				var dispatcher = connection.playFile(fileName);
-				dispatcher.setVolume(1);
-			})
+			voiceChannel.join()
+				.then(connection =>{
+					var dispatcher = connection.playFile(fileName);
+					dispatcher.setVolume(1);
+				})
+				.catch(console.error);
 			setTimeout(leaveVoice, soundLength, voiceChannel);
 		}
 		else
@@ -71,7 +73,7 @@ client.on('message', (message) =>
 		message.channel.send(url);
     }
 
-    if(MSG.startsWith("gs"))
+    if(MSG.startsWith("gs") && message.author.toString() != "<@248417802355081216>")
     {
 		if(MSG.split(' ')[1] == "play")
 		{
@@ -125,7 +127,7 @@ client.on('message', (message) =>
 		}		
 	}
 
-	if(MSG.startsWith("gm"))
+	if(MSG.startsWith("gm") && message.author.toString() != "<@248417802355081216>")
     {
 		if(MSG.split(' ')[1] == "play")
 		{
@@ -265,3 +267,10 @@ client.on('message', (message) =>
 		}
 	}
 });
+
+var static = require('node-static');
+var file = new static.Server('.');
+
+http.createServer(function(req, res) {
+  file.serve(req, res);
+}).listen(8080);
