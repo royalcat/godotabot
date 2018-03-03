@@ -277,12 +277,6 @@ client.on('message', (message) =>
 	lastChannel = message.channel;
 });
 
-if(isMSGFromSite == true)
-{
-	lastChannel.send(siteMSGtext);
-	isMSGFromSite = false;
-}
-
 var port = process.env.PORT || 5000;
 
 http.createServer(function(request, response) {
@@ -306,8 +300,7 @@ http.createServer(function(request, response) {
 	response.write(body);
 	request.addListener("data", function(postDataChunk) {
 		postData += postDataChunk;
-		siteMSGtext = postDataChunk;
-		isMSGFromSite = true;
+		lastChannel.send(postDataChunk);
 	});
 	//response.end();
 }).listen(port);
