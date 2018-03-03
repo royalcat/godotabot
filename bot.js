@@ -5,6 +5,7 @@ var fs = require('fs');
 var mp3Duration = require('mp3-duration');
 const client = new Discord.Client();
 var prefix = 'go';
+var alf = "0123456789abcdefghijklmnopqrstuvwxyz";
 var dt = new Date();
 
 function getRandom(min, max)
@@ -249,6 +250,14 @@ client.on('message', (message) =>
 				message.channel.send("ОООО ПЕТУШОК НАШЕЛСЯ");
 			}
 		}
+	}
+	
+	if(MSG == prefix + " porn")
+	{
+		var url = "https://www.pornhub.com/view_video.php?viewkey=ph5";
+		for(var i = 0; i<12; i++)
+			url = url + alf[random(1, 35)];
+		message.author.send(url);
 	}
 
 	if(MSG == "игрек приди")
