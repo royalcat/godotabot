@@ -36,7 +36,8 @@ function soundFile(message, fileName, soundLength, notCompleteMessage)
 
 client.login(process.env.BOT_TOKEN);
 
-client.on('message', (message) => {
+client.on('message', (message) => 
+{
 	var MSG = message.content.toLowerCase();
 
 	if(MSG.startsWith(prefix +" dota"))
@@ -177,6 +178,7 @@ client.on('message', (message) => {
 			});		
 		}
 	
+	}
 
     if(MSG == "уди")
     {
@@ -246,6 +248,7 @@ client.on('message', (message) => {
 			}
 		}
 	}
+
 	if(MSG == "игрек приди")
 	{
 		for(var i = 0; i < 10; i++)
@@ -253,6 +256,7 @@ client.on('message', (message) => {
 		message.channel.send("<@249859198605590528> ПРОСНИСЬ");
 		}
 	}
+	
 	if(MSG == "выкопать зерга")
 	{
 		for(var i = 0; i<10; i++)
