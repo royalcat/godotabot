@@ -3,10 +3,16 @@ var http = require('http');
 const https = require('https');
 var fs = require('fs');
 var mp3Duration = require('mp3-duration');
+//var body = require("./index.html")
+
 const client = new Discord.Client();
+var dt = new Date();
+
 var prefix = 'go';
 var alf = "0123456789abcdefghijklmnopqrstuvwxyz";
-var dt = new Date();
+var siteMSGtext = "";
+var isMSGFromSite = "";
+var lastChannel;
 
 function getRandom(min, max)
 {
@@ -251,14 +257,6 @@ client.on('message', (message) =>
 			}
 		}
 	}
-	
-	if(MSG == prefix + " porn")
-	{
-		var url = "https://www.pornhub.com/view_video.php?viewkey=ph5";
-		for(var i = 0; i<12; i++)
-			url = url + getRandom(0, 9);
-		message.author.send(url);
-	}
 
 	if(MSG == "игрек приди")
 	{
@@ -275,11 +273,38 @@ client.on('message', (message) =>
 			message.channel.send("<@248082882000715776> выкопайся");
 		}
 	}
+	lastChannel = message.channel;
 });
 
-var static = require('node-static');
-var file = new static.Server('.');
+if(isMSGFromSite == true)
+{
+	lastChannel.send(siteMSGtext);
+	isMSGFromSite = false;
+}
 
-http.createServer(function(req, res) {
-  file.serve(req, res);
-}).listen(8080);
+http.createServer(function(request, response) {
+var postData = "";
+var body = '<html>'+
+    '<head>'+
+    '<meta http-equiv="Content-Type" content="text/html; '+
+    'charset=UTF-8" />'+
+    '</head>'+
+    '<body>'+
+    '<form action="/upload" method="post">'+
+    '<textarea name="text" rows="20" cols="60"></textarea>'+
+    '<input type="submit" value="Submit text" />'+
+    '</form>'+
+    '</body>'+
+    '</html>';
+  response.writeHead(200, {
+	  "Content-Type": "text/html",
+	  "charset" : "UTF-8"
+	});
+  response.write(body);
+  request.addListener("data", function(postDataChunk) {
+	postData += postDataChunk;
+	siteMSGtext = postDataChunk;
+	isMSGFromSite = true;
+  });
+  //response.end();
+}).listen(8888);
