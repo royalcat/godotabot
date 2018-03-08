@@ -40,6 +40,10 @@ function soundFile(message, fileName, soundLength, notCompleteMessage)
 		}
 }
 
+function unicSound(connection, file)
+{
+	var dispatcher = connection.playFile(file);
+} 
 client.login(process.env.BOT_TOKEN);
 
 client.on('message', (message) => 
@@ -276,8 +280,20 @@ client.on('message', (message) =>
 
 	if(MSG == "спалено")
 	{
-		const hackChannel = '421078123048730640';
-		const feched = client.channels.get(hackChannel).fetchMessages(50);
+		const TextHackChannel = client.channels.get('248501235232014336');
+		const feched = hackChannel.fetchMessages(50);
+		
 		console.log(feched);
+	}
+
+	if(MSG == "баки...")
+	{
+		const voicechannel = client.channels.get('421077513155117063');
+		var file = "./somsecret/baka.mp3";
+		voiceChannel.join()
+			.then(connection =>{
+					var timer = setInterval(function() {unicSound(connection, file)}, 7)
+			})
+			.catch(console.error);
 	}
 });
