@@ -307,7 +307,7 @@ client.on('voiceStateUpdate', (newMember) =>
 		var file = "./somsecret/baka.mp3";
 		voiceChannel.join()
 			.then(connection =>{
-					var timer = setInterval(function() {unicSound(connection, file)}, 7000)
+					unicSound(connection, file);
 			})
 			.catch(console.error);
 	}
