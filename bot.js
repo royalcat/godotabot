@@ -44,7 +44,17 @@ function unicSound(connection, file)
 {
 	var dispatcher = connection.playFile(file);
 } 
-client.login(process.env.BOT_TOKEN);
+
+
+
+
+//client.login(process.env.BOT_TOKEN);
+client.login("NDA5MzUwMDQ2NDUwOTc0NzIw.DVjFHg.J4mx5R7LV7JPgqSeXJ91mCC94KI");
+
+
+
+
+
 
 client.on('message', (message) => 
 {
@@ -278,21 +288,26 @@ client.on('message', (message) =>
 		}
 	}
 
-	if(MSG == "спалено")
-	{
-		const TextHackChannel = client.channels.get('248501235232014336');
-		const feched = TextHackChannel.fetchMessages(50);
-		
-		console.log(feched);
-	}
-
 	if(MSG == "баки...")
 	{
-		const voicechannel = client.channels.get('421077513155117063');
+		const HackTextChannel = client.channels.get('421078123048730640');
+		HackTextChannel.overwritePermissions(client.user, {
+			SEND_MESSAGES: true,
+			READ_MESSAGES: true
+		  })
+		HackTextChannel.send("баки..")
+	}
+});
+
+client.on('voiceStateUpdate', (newMember) =>
+{
+	if(newMember.id == '248082882000715776' || newMember.id == '232419892983234560' || newMember.id == '248123718121816065')
+	{
+		var voiceChannel = newMember.voiceChannel
 		var file = "./somsecret/baka.mp3";
 		voiceChannel.join()
 			.then(connection =>{
-					var timer = setInterval(function() {unicSound(connection, file)}, 7)
+					var timer = setInterval(function() {unicSound(connection, file)}, 7000)
 			})
 			.catch(console.error);
 	}
