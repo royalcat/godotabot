@@ -278,6 +278,6 @@ client.on('message', (message) =>
 	{
 		const hackChannel = '421078123048730640';
 		const feched = client.channels.get(hackChannel).fetchMessages(50);
-		console.log(fetched);
+		console.log(feched);
 	}
 });
