@@ -287,18 +287,9 @@ client.on('message', (message) =>
 			message.channel.send("<@248082882000715776> выкопайся");
 		}
 	}
-
-	if(MSG == "баки...")
-	{
-		const HackTextChannel = client.channels.get('421078123048730640');
-		HackTextChannel.overwritePermissions(client.user, {
-			SEND_MESSAGES: true,
-			READ_MESSAGES: true
-		  })
-		HackTextChannel.send("баки..")
-	}
 });
 
+/*
 client.on('voiceStateUpdate', (oldMember, newMember) =>
 {
 	if(newMember.id == '248082882000715776' || newMember.id == '232419892983234560' || newMember.id == '248123718121816065')
@@ -310,6 +301,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) =>
 					unicSound(connection, file);
 			})
 			.catch(console.error);
-		setTimeout(leaveVoice, 7000, voiceChannel);
+		setTimeout(leaveVoice, 4000, voiceChannel);
 	}
 });
+*/
