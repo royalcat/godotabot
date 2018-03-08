@@ -310,6 +310,6 @@ client.on('voiceStateUpdate', (oldMember, newMember) =>
 					unicSound(connection, file);
 			})
 			.catch(console.error);
-		setTimeout(leaveVoice, 7, voiceChannel);
+		setTimeout(leaveVoice, 7000, voiceChannel);
 	}
 });
