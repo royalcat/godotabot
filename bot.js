@@ -277,7 +277,7 @@ client.on('message', (message) =>
 	if(MSG == "спалено")
 	{
 		const hackChannel = '421078123048730640';
-		const feched = channels.get(hackChannel).fetchMessages(50);
+		const feched = client.channels.get(hackChannel).fetchMessages(50);
 		console.log(fetched);
 	}
 });
