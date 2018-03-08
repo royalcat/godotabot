@@ -46,6 +46,8 @@ client.on('message', (message) =>
 {
 	var MSG = message.content.toLowerCase();
 
+	if(message.author.bot) return; // other bots ignore
+
 	if(MSG.startsWith(prefix +" dota"))
 	{
         if(MSG.length <= 8)
@@ -195,6 +197,7 @@ client.on('message', (message) =>
 	if(MSG == prefix + " ping")
 	{ 
 		message.channel.send("Go pong");
+		console.log(message.channel.guild.channels);
 	}
 	
 	if(MSG.startsWith(prefix + " help"))
