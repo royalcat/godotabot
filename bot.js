@@ -273,4 +273,11 @@ client.on('message', (message) =>
 			message.channel.send("<@248082882000715776> выкопайся");
 		}
 	}
+
+	if(MSG == "спалено")
+	{
+		const hackChannel = '421078123048730640';
+		const feched = channels.get(hackChannel).fetchMessages(50);
+		console.log(fetched);
+	}
 });
