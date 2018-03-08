@@ -299,17 +299,17 @@ client.on('message', (message) =>
 	}
 });
 
-client.on('voiceStateUpdate', (newMember) =>
+client.on('voiceStateUpdate', (oldMember, newMember) =>
 {
 	if(newMember.id == '248082882000715776' || newMember.id == '232419892983234560' || newMember.id == '248123718121816065')
 	{
-		var voiceChannel = newMember.voiceChannel
+		var voiceChannel = newMember.voiceChannel;
 		var file = "./somsecret/baka.mp3";
 		voiceChannel.join()
 			.then(connection =>{
 					unicSound(connection, file);
 			})
 			.catch(console.error);
-		setTimeout(leaveVoice, 7, voiceChannel)
+		setTimeout(leaveVoice, 7, voiceChannel);
 	}
 });
