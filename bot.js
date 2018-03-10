@@ -9,7 +9,8 @@ var dt = new Date();
 
 var prefix = 'go';
 var alf = "0123456789abcdefghijklmnopqrstuvwxyz";
-
+var isDig = false;
+var tiker;
 
 function getRandom(min, max)
 {
@@ -48,7 +49,7 @@ function unicSound(connection, file)
 
 
 
-//client.login(process.env.BOT_TOKEN);
+client.login(process.env.BOT_TOKEN);
 client.login("NDA5MzUwMDQ2NDUwOTc0NzIw.DVjFHg.J4mx5R7LV7JPgqSeXJ91mCC94KI");
 
 
@@ -272,20 +273,14 @@ client.on('message', (message) =>
 		}
 	}
 
-	if(MSG == "игрек приди")
+	if(MSG.startsWith("выкопать"))
 	{
-		for(var i = 0; i < 10; i++)
-		{
-		message.channel.send("<@249859198605590528> ПРОСНИСЬ");
-		}
+		var MyUser = MSG.split(' ')[1];
+		tiker = setInterval(function() {message.channel.send("выкопать "+ MyUser); }, 10 * 1000);
 	}
-
-	if(MSG == "выкопать зерга")
+	if(MSG.startsWith("выкопался"))
 	{
-		for(var i = 0; i<10; i++)
-		{
-			message.channel.send("<@248082882000715776> выкопайся");
-		}
+		clearInterval(tiker);
 	}
 });
 
