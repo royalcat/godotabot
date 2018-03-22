@@ -240,7 +240,9 @@ client.on('message', (message) =>
 			commands[3] = "Go ping - Go pong\n"
 			commands[4] = "Go help sound - помошь по звукам\n"
 			commands[5] = "Go help fun - всякая всячина\n"
-			text = "Основые команды бота:\n"+commands[0]+commands[1]+commands[2]+commands[3]+commands[4]+commands[5]; 
+			commands[6] = "выкопать (упоминание) - каждые 10 секунд упоминает пользователя\n"
+			commands[7] = "выкопался - останавливает все раскопки\n"
+			text = "Основые команды бота:\n"+commands[0]+commands[1]+commands[2]+commands[3]+commands[4]+commands[5]+commands[6]+commands[7]; 
 		}
 		message.channel.send(text);
 	}
