@@ -11,6 +11,7 @@ var prefix = 'go';
 var alf = "0123456789abcdefghijklmnopqrstuvwxyz";
 var isDig = false;
 var tiker;
+var neinMode = true;
 
 function getRandom(min, max)
 {
@@ -62,6 +63,17 @@ client.on('message', (message) =>
 	var MSG = message.content.toLowerCase();
 
 	if(message.author.bot) return; // other bots ignore
+
+	if(MSG = "NEIN MODE")
+	{
+		neinMode = !neinMode;
+		message.channel.send("NEIN MODE ACTIVATED");
+	}
+
+	if(neinMode && MSG != "NEIN MODE")
+	{
+		message.edit("NEIN");
+	}
 
 	if(MSG.startsWith(prefix +" dota"))
 	{
