@@ -64,7 +64,7 @@ client.on('message', (message) =>
 
 	if(message.author.bot) return; // other bots ignore
 
-	if(MSG = "nein mode")
+	if(MSG == "nein mode")
 	{
 		neinMode = !neinMode;
 		message.channel.send("NEIN MODE ACTIVATED");
