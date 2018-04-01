@@ -11,7 +11,7 @@ var prefix = 'go';
 var alf = "0123456789abcdefghijklmnopqrstuvwxyz";
 var isDig = false;
 var tiker;
-var neinMode = true;
+var neinMode = false;
 
 function getRandom(min, max)
 {
@@ -51,7 +51,7 @@ function unicSound(connection, file)
 
 
 client.login(process.env.BOT_TOKEN);
-client.login("NDA5MzUwMDQ2NDUwOTc0NzIw.DVjFHg.J4mx5R7LV7JPgqSeXJ91mCC94KI");
+//client.login("NDA5MzUwMDQ2NDUwOTc0NzIw.DVjFHg.J4mx5R7LV7JPgqSeXJ91mCC94KI");
 
 
 
@@ -72,7 +72,8 @@ client.on('message', (message) =>
 
 	if(neinMode && MSG != "nein mode")
 	{
-		message.edit("NEIN");
+		message.delete();
+		message.channel.send(message.author + "NEIN");
 	}
 
 	if(MSG.startsWith(prefix +" dota"))
