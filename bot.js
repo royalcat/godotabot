@@ -64,16 +64,31 @@ client.on('message', (message) =>
 
 	if(message.author.bot) return; // other bots ignore
 
-	if(MSG == "nein mode")
+	if(MSG == "nein mode" && dt.getDay == 1 && dt.getMonth == 4)
 	{
-		neinMode = !neinMode;
-		message.channel.send("NEIN MODE ACTIVATED");
+		if(neinMode == true)
+		{
+			message.channel.send("NEIN MODE ACTIVATED");
+			neinMode = false;
+		}
+		if(neinMode == false)
+		{
+			message.channel.send("NEIN MODE DEACTIVATED");
+			neinMode = true;
+		}
 	}
 
 	if(neinMode && MSG != "nein mode")
 	{
-		message.delete();
-		message.channel.send(message.author + "NEIN");
+		if(dt.getDay == 1 && dt.getMonth == 4)
+		{
+			message.delete();
+			message.channel.send(message.author + " NEIN" + "(to off write NEIN MODE)");
+		}
+		else
+		{
+			neinMode = false;
+		}
 	}
 
 	if(MSG.startsWith(prefix +" dota"))
