@@ -20,7 +20,7 @@ var neinMode = false;
 
 function messageToKonfach(msg)
 {
-	var KNFchannel = bot.channels.get('248501235232014336');
+	var KNFchannel = client.channels.get('248501235232014336');
 	KNFchannel.send(msg);
 } 
 
