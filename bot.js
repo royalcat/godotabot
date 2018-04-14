@@ -7,11 +7,22 @@ var mp3Duration = require('mp3-duration');
 const client = new Discord.Client();
 var dt = new Date();
 
+const ServerCommands = {
+    GODOTA: 'GODOTA',
+}
+
 var prefix = 'go';
 var alf = "0123456789abcdefghijklmnopqrstuvwxyz";
 var isDig = false;
 var tiker;
 var neinMode = false;
+
+
+function messageToKonfach(msg)
+{
+	var KNFchannel = bot.channels.get('248501235232014336');
+	KNFchannel.send(msg);
+} 
 
 function getRandom(min, max)
 {
@@ -47,16 +58,7 @@ function unicSound(connection, file)
 	var dispatcher = connection.playFile(file);
 } 
 
-
-
-
 client.login(process.env.BOT_TOKEN);
-//client.login("NDA5MzUwMDQ2NDUwOTc0NzIw.DVjFHg.J4mx5R7LV7JPgqSeXJ91mCC94KI");
-
-
-
-
-
 
 client.on('message', (message) => 
 {
@@ -314,19 +316,4 @@ client.on('message', (message) =>
 	}
 });
 
-/*
-client.on('voiceStateUpdate', (oldMember, newMember) =>
-{
-	if(newMember.id == '248082882000715776' || newMember.id == '232419892983234560' || newMember.id == '248123718121816065')
-	{
-		var voiceChannel = newMember.voiceChannel;
-		var file = "./somsecret/baka.mp3";
-		voiceChannel.join()
-			.then(connection =>{
-					unicSound(connection, file);
-			})
-			.catch(console.error);
-		setTimeout(leaveVoice, 4000, voiceChannel);
-	}
-});
-*/
+module.exports.messageToKonfach = messageToKonfach;

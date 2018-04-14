@@ -1,11 +1,40 @@
-
+<!DOCTYPE HTML>
 <html>
-  <head>
-    <meta charset="utf-8">
-  </head>
-  
-  <body>
-    <p><input maxlength="25" size="40"></p>
-    <button onclick="vote()" id="button">Отправить!</button>
-  </body>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+
+  <button onclick="vote()" id="button">GoDota</button>
+
+  <script>
+    function vote() {
+      button.innerHTML = ' ... ';
+
+      var xhr = new XMLHttpRequest();
+
+      xhr.open('GET', 'godota', true);
+
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState != 4) return;
+
+        if (xhr.status != 200) {
+          // обработать ошибку
+          alert('Ошибка ' + xhr.status + ': ' + xhr.statusText);
+          return;
+        }
+
+        // обработать результат
+        button.innerHTML = xhr.responseText;
+      }
+
+      xhr.send(null);
+
+    }
+  </script>
+
+</body>
+
 </html>
