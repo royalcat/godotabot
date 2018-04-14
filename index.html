@@ -6,9 +6,20 @@
 </head>
 
 <body>
-<form action="/godota">
+
   <button onclick="vote()" id="button">GoDota</button>
-</form>
+
+  <script type = "text/javascript">
+    function vote() {
+  
+      var xhr = new XMLHttpRequest();
+
+      xhr.open('GET', 'godota', true);
+
+      xhr.send(null);
+    }
+  </script>
+
 </body>
 
 </html>
