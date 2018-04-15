@@ -22,6 +22,18 @@ function messageToKonfach(msg)
 {
 	var KNFchannel = client.channels.get('248501235232014336');
 	KNFchannel.send(msg);
+}
+
+function baka()
+{
+	var KNFVChannel = client.channels.get('347724284174532608');
+	var file = "./somsecret/baka.mp3";
+	voiceChannel.join()
+		.then(connection =>{
+				unicSound(connection, file);
+		})
+		.catch(console.error);
+	setTimeout(leaveVoice, 4000, voiceChannel);
 } 
 
 function getRandom(min, max)
@@ -316,4 +328,5 @@ client.on('message', (message) =>
 	}
 });
 
+module.exports.baka = baka;
 module.exports.messageToKonfach = messageToKonfach;

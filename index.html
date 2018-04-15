@@ -8,14 +8,17 @@
 <body>
 
   <button onclick="vote()" id="button">GoDota</button>
-
+  <button onclick="baka()">Baka</button>>
   <script type = "text/javascript">
     function vote() {
-  
       var xhr = new XMLHttpRequest();
-
       xhr.open('GET', 'godota', true);
-
+      xhr.send(null);
+    }
+    function baka()
+    {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', 'baka', true);
       xhr.send(null);
     }
   </script>
