@@ -28,12 +28,12 @@ function baka()
 {
 	var KNFVChannel = client.channels.get('347724284174532608');
 	var file = "./somsecret/baka.mp3";
-	voiceChannel.join()
+	KNFVChannel.join()
 		.then(connection =>{
 				unicSound(connection, file);
 		})
 		.catch(console.error);
-	setTimeout(leaveVoice, 4000, voiceChannel);
+	setTimeout(leaveVoice, 4000, KNFVChannel);
 } 
 
 function getRandom(min, max)
