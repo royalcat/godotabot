@@ -74,7 +74,15 @@ function MSGreq(message)
 {
 	var MSG = message.content.toLowerCase();
 
-	if(message.author.bot) return; // other bots ignore
+	if(message.author.bot)
+     {
+          if(message.content.startsWith("@everyone Go DOTA\nCreating dota party:"))
+          {
+               message.react('🙋')
+          }
+
+          return; // other bots ignore
+     }
 
 	if(MSG == "nein mode" && dt.getDay == 1 && dt.getMonth == 4)
 	{
@@ -88,6 +96,7 @@ function MSGreq(message)
 			message.channel.send("NEIN MODE DEACTIVATED");
 			neinMode = true;
 		}
+          return;
 	}
 
 	if(neinMode && MSG != "nein mode")
@@ -101,38 +110,50 @@ function MSGreq(message)
 		{
 			neinMode = false;
 		}
+          return;
 	}
 
-	if(MSG.startsWith(prefix +" dota"))
-	{
-        if(MSG.length <= 8)
-        {
-            message.channel.send("@everyone го дота");
-        }
-        if(MSG.length > 8)
-        {
-            var i = 0;
-            var num = parseInt(MSG.replace(/\D+/g,""));
-            if(num > 0 && num < 11 && num != null)
-            {
-                while(i != num)
-                {
-                    message.channel.send("@everyone го дота");
-                    i++;
-                }
-            }
-            else
-            {
-                message.channel.send("Ты шо, охерел?");
-            }
-        }
-    }
+     if(MSG.startsWith(prefix +" dota"))
+     {
+          if(MSG.split(' ')[1] ==  "dota")
+          {
+               if(MSG.length <= 8)
+               {
+                 message.channel.send("@everyone го дота");
+               }
+               if(MSG.length > 8)
+               {
+                 var i = 0;
+                 var num = parseInt(MSG.replace(/\D+/g,""));
+                 if(num > 0 && num < 11 && num != null)
+                 {
+                     while(i != num)
+                     {
+                         message.channel.send("@everyone го дота");
+                         i++;
+                     }
+                 }
+                 else
+                 {
+                     message.channel.send("Ты шо, охерел?");
+                 }
+               }
+          }
 
-    if(MSG == prefix +" random coub")
-    {
-		var url = 'http://coub.com/view/'+getRandom()+getRandom()+getRandom()+getRandom()+getRandom();
-		message.channel.send(url);
-    }
+          if(MSG.split(' ')[1] == "dota_lobby")
+          {
+               botmessage = message.channel.send(
+                    "@everyone Go DOTA\n" +
+                    "Creating dota party:\n" +
+                    ":white_check_mark: " + message.author.username + "\n" +
+                    ":x:\n" +
+                    ":x:\n" +
+                    ":x:\n" +
+                    ":x:\n"
+               )
+          }
+          return;
+     }
 
     if(MSG.startsWith("gs") && message.author.toString() != "<@248417802355081216>")
     {
@@ -186,73 +207,21 @@ function MSGreq(message)
 				message.channel.send(listMsg);
 			});
 		}
-	}
-
-	if(MSG.startsWith("gm") && message.author.toString() != "<@248417802355081216>")
-    {
-		if(MSG.split(' ')[1] == "play")
-		{
-			var file = "./music/" +MSG.split(' ')[2] + ".mp3";
-
-			mp3Duration(file, function (err, duration) {
-				if (err) return console.log(err.message);
-				soundFile(message, file, duration*1000+2000);
-			});
-		}
-
-		if(MSG.split(' ')[1] == "load")
-		{
-			if(message.attachments.size == 1)
-			{
-				var attachment = (message.attachments).array();
-				var fileUrl = attachment[0].url;
-				var urlLeight = fileUrl.length;
-
-				var fileName = MSG.split(' ')[2];
-				if(fileUrl[urlLeight-1] == '3' && fileUrl[urlLeight-2] == 'p' && fileUrl[urlLeight-3] == 'm' && fileUrl[urlLeight-4] == '.') // быдлокод рулит
-				{
-					var file = fs.createWriteStream("./music/" + fileName + ".mp3");
-					var request = https.get(fileUrl, function (response) {
-					response.pipe(file);
-					});
-				}
-				else
-				{
-					message.channel.send("не тот формат");
-				}
-			}
-			else
-			{
-				message.channel.send("не подходит");
-			}
-		}
-
-		if(MSG.split(' ')[1] == "list")
-		{
-			var path = "./music/";
-			var listMsg = "";
-			fs.readdir(path, function(err, items)
-			{
-				for (var i=0; i<items.length; i++)
-				{
-					listMsg = listMsg + items[i].split('.')[0] +"\n";
-				}
-				message.channel.send(listMsg);
-			});
-		}
-
+          return;
 	}
 
     if(MSG == "уди")
     {
         var voiceChannel = message.member.voiceChannel;
         voiceChannel.leave();
+        return;
     }
 
 	if(MSG == prefix + " ping")
 	{
 		message.channel.send("Go pong");
 		console.log(message.channel.guild.channels);
+          return;
 	}
 
 	if(MSG.startsWith(prefix + " help"))
@@ -285,6 +254,7 @@ function MSGreq(message)
 			text = "Основые команды бота:\n"+commands[0]+commands[1]+commands[2]+commands[3]+commands[4]+commands[5]+commands[6]+commands[7];
 		}
 		message.channel.send(text);
+          return;
 	}
 
 	if(MSG.startsWith(prefix +" custom call "))
@@ -313,16 +283,19 @@ function MSGreq(message)
 				message.channel.send("ОООО ПЕТУШОК НАШЕЛСЯ");
 			}
 		}
+          return;
 	}
 
 	if(MSG.startsWith("выкопать"))
 	{
 		var MyUser = MSG.split(' ')[1];
 		tiker = setInterval(function() {message.channel.send("выкопать "+ MyUser); }, 10 * 1000);
+          return;
 	}
 	if(MSG.startsWith("выкопался"))
 	{
 		clearInterval(tiker);
+          return;
 	}
 }
 
