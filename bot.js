@@ -1,10 +1,8 @@
-﻿const Discord = require("discord.js");
 var http = require('http');
 const https = require('https');
 var fs = require('fs');
 var mp3Duration = require('mp3-duration');
-
-const client = new Discord.Client();
+var client;
 var dt = new Date();
 
 const ServerCommands = {
@@ -34,7 +32,7 @@ function baka()
 		})
 		.catch(console.error);
 	setTimeout(leaveVoice, 4000, KNFVChannel);
-} 
+}
 
 function getRandom(min, max)
 {
@@ -68,11 +66,11 @@ function soundFile(message, fileName, soundLength, notCompleteMessage)
 function unicSound(connection, file)
 {
 	var dispatcher = connection.playFile(file);
-} 
+}
 
-client.login(process.env.BOT_TOKEN);
 
-client.on('message', (message) => 
+
+function MSGreq()
 {
 	var MSG = message.content.toLowerCase();
 
@@ -109,7 +107,7 @@ client.on('message', (message) =>
 	{
         if(MSG.length <= 8)
         {
-            message.channel.send("@everyone го дота");   
+            message.channel.send("@everyone го дота");
         }
         if(MSG.length > 8)
         {
@@ -141,7 +139,7 @@ client.on('message', (message) =>
 		if(MSG.split(' ')[1] == "play")
 		{
 			var file = "./media/" +MSG.split(' ')[2] + ".mp3";
-			
+
 			mp3Duration(file, function (err, duration) {
 				if (err) return console.log(err.message);
 				soundFile(message, file, duration*1000+2000);
@@ -154,7 +152,7 @@ client.on('message', (message) =>
 			{
 				var attachment = (message.attachments).array();
 				var fileUrl = attachment[0].url;
-				var urlLeight = fileUrl.length; 
+				var urlLeight = fileUrl.length;
 
 				var fileName = MSG.split(' ')[2];
 				if(fileUrl[urlLeight-1] == '3' && fileUrl[urlLeight-2] == 'p' && fileUrl[urlLeight-3] == 'm' && fileUrl[urlLeight-4] == '.') // быдлокод рулит
@@ -179,15 +177,15 @@ client.on('message', (message) =>
 		{
 			var path = "./media/";
 			var listMsg = "";
-			fs.readdir(path, function(err, items) 
+			fs.readdir(path, function(err, items)
 			{
-				for (var i=0; i<items.length; i++) 
-				{				
+				for (var i=0; i<items.length; i++)
+				{
 					listMsg = listMsg + items[i].split('.')[0] +"\n";
 				}
 				message.channel.send(listMsg);
-			});		
-		}		
+			});
+		}
 	}
 
 	if(MSG.startsWith("gm") && message.author.toString() != "<@248417802355081216>")
@@ -195,7 +193,7 @@ client.on('message', (message) =>
 		if(MSG.split(' ')[1] == "play")
 		{
 			var file = "./music/" +MSG.split(' ')[2] + ".mp3";
-			
+
 			mp3Duration(file, function (err, duration) {
 				if (err) return console.log(err.message);
 				soundFile(message, file, duration*1000+2000);
@@ -208,7 +206,7 @@ client.on('message', (message) =>
 			{
 				var attachment = (message.attachments).array();
 				var fileUrl = attachment[0].url;
-				var urlLeight = fileUrl.length; 
+				var urlLeight = fileUrl.length;
 
 				var fileName = MSG.split(' ')[2];
 				if(fileUrl[urlLeight-1] == '3' && fileUrl[urlLeight-2] == 'p' && fileUrl[urlLeight-3] == 'm' && fileUrl[urlLeight-4] == '.') // быдлокод рулит
@@ -233,16 +231,16 @@ client.on('message', (message) =>
 		{
 			var path = "./music/";
 			var listMsg = "";
-			fs.readdir(path, function(err, items) 
+			fs.readdir(path, function(err, items)
 			{
-				for (var i=0; i<items.length; i++) 
-				{				
+				for (var i=0; i<items.length; i++)
+				{
 					listMsg = listMsg + items[i].split('.')[0] +"\n";
 				}
 				message.channel.send(listMsg);
-			});		
+			});
 		}
-	
+
 	}
 
     if(MSG == "уди")
@@ -250,13 +248,13 @@ client.on('message', (message) =>
         var voiceChannel = message.member.voiceChannel;
         voiceChannel.leave();
     }
-	
+
 	if(MSG == prefix + " ping")
-	{ 
+	{
 		message.channel.send("Go pong");
 		console.log(message.channel.guild.channels);
 	}
-	
+
 	if(MSG.startsWith(prefix + " help"))
 	{
 		var commands =[];
@@ -284,11 +282,11 @@ client.on('message', (message) =>
 			commands[5] = "Go help fun - всякая всячина\n"
 			commands[6] = "выкопать (упоминание) - каждые 10 секунд упоминает пользователя\n"
 			commands[7] = "выкопался - останавливает все раскопки\n"
-			text = "Основые команды бота:\n"+commands[0]+commands[1]+commands[2]+commands[3]+commands[4]+commands[5]+commands[6]+commands[7]; 
+			text = "Основые команды бота:\n"+commands[0]+commands[1]+commands[2]+commands[3]+commands[4]+commands[5]+commands[6]+commands[7];
 		}
 		message.channel.send(text);
 	}
-	
+
 	if(MSG.startsWith(prefix +" custom call "))
 	{
 		var i = 15;
@@ -326,7 +324,9 @@ client.on('message', (message) =>
 	{
 		clearInterval(tiker);
 	}
-});
+}
 
 module.exports.baka = baka;
 module.exports.messageToKonfach = messageToKonfach;
+module.exports.MSGreq = MSGreq;
+module.exports.client = client;

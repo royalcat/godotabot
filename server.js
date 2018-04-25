@@ -26,6 +26,7 @@ function accept(req, res) {
 
 
 // ------ этот код запускает веб-сервер -------
-http.createServer(accept).listen(process.env.PORT || 8080);
 
 module.exports.buttonClick = buttonClick;
+module.exports.accept = accept;
+module.exports.http = http;
