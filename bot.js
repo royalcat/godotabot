@@ -70,7 +70,7 @@ function unicSound(connection, file)
 
 
 
-function MSGreq()
+function MSGreq(message)
 {
 	var MSG = message.content.toLowerCase();
 
@@ -136,41 +136,41 @@ function MSGreq()
 
     if(MSG.startsWith("gs") && message.author.toString() != "<@248417802355081216>")
     {
-		if(MSG.split(' ')[1] == "play")
-		{
-			var file = "./media/" +MSG.split(' ')[2] + ".mp3";
+  		if(MSG.split(' ')[1] == "play")
+  		{
+  			var file = "./media/" +MSG.split(' ')[2] + ".mp3";
 
-			mp3Duration(file, function (err, duration) {
-				if (err) return console.log(err.message);
-				soundFile(message, file, duration*1000+2000);
-			});
-		}
+  			mp3Duration(file, function (err, duration) {
+  				if (err) return console.log(err.message);
+  				soundFile(message, file, duration*1000+2000);
+  			});
+  		}
 
-		if(MSG.split(' ')[1] == "load")
-		{
-			if(message.attachments.size == 1)
-			{
-				var attachment = (message.attachments).array();
-				var fileUrl = attachment[0].url;
-				var urlLeight = fileUrl.length;
+  		if(MSG.split(' ')[1] == "load")
+  		{
+  			if(message.attachments.size == 1)
+  			{
+  				var attachment = (message.attachments).array();
+  				var fileUrl = attachment[0].url;
+  				var urlLeight = fileUrl.length;
 
-				var fileName = MSG.split(' ')[2];
-				if(fileUrl[urlLeight-1] == '3' && fileUrl[urlLeight-2] == 'p' && fileUrl[urlLeight-3] == 'm' && fileUrl[urlLeight-4] == '.') // быдлокод рулит
-				{
-					var file = fs.createWriteStream("./media/" + fileName + ".mp3");
-					var request = https.get(fileUrl, function (response) {
-					response.pipe(file);
-					});
-				}
-				else
-				{
-					message.channel.send("не тот формат");
-				}
-			}
-			else
-			{
-				message.channel.send("не подходит");
-			}
+  				var fileName = MSG.split(' ')[2];
+  				if(fileUrl[urlLeight-1] == '3' && fileUrl[urlLeight-2] == 'p' && fileUrl[urlLeight-3] == 'm' && fileUrl[urlLeight-4] == '.') // быдлокод рулит
+  				{
+  					var file = fs.createWriteStream("./media/" + fileName + ".mp3");
+  					var request = https.get(fileUrl, function (response) {
+  					response.pipe(file);
+  					});
+  				}
+  				else
+  				{
+  					message.channel.send("не тот формат");
+  				}
+  			}
+  			else
+  			{
+  				message.channel.send("не подходит");
+  			}
 		}
 
 		if(MSG.split(' ')[1] == "list")
