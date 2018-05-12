@@ -17,17 +17,6 @@ const client = new Discord.Client();
 var KNFchannel = client.channels.get('248501235232014336');
 var KNFVoiceChannel = client.channels.get('347724284174532608');
 
-function accept(req, res) {
-     if (req.url == '/godota') {
-          buttonClick.emit('godota');
-     }
-     if(req.url == '/baka'){
-          buttonClick.emit('baka');
-     } else {
-          file.serve(req, res);
-     }
-}
-
 function getRandom(min, max)
 {
     return Math.floor(Math.random() * max) + min;
@@ -307,6 +296,18 @@ function MSGreq(message)
           return;
 	}
 }
+
+function accept(req, res) {
+     if (req.url == '/godota') {
+          messageToKonfach('godota');
+     }
+     if(req.url == '/baka'){
+          baka();
+     } else {
+          file.serve(req, res);
+     }
+}
+
 
 
 //client.login(process.env.BOT_TOKEN);
