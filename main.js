@@ -14,8 +14,6 @@ var isDig = false;
 var neinMode = false;
 
 const client = new Discord.Client();
-var KNFchannel = client.channels.get('248501235232014336');
-var KNFVoiceChannel = client.channels.get('347724284174532608');
 
 function getRandom(min, max)
 {
@@ -24,20 +22,9 @@ function getRandom(min, max)
 
 function messageToKonfach(msg)
 {
+     var KNFchannel = client.channels.get('248501235232014336');
 	KNFchannel.send(msg);
 }
-
-function baka()
-{
-	var file = "./somsecret/baka.mp3";
-	KNFVoiceChannel.join()
-		.then(connection =>{
-				unicSound(connection, file);
-		})
-		.catch(console.error);
-	setTimeout(leaveVoice, 4000, KNFVoiceChannel);
-}
-
 
 function leaveVoice(voiceChannel)
 {
