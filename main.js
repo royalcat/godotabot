@@ -290,7 +290,7 @@ function accept(req, res) {
           req.on('data', function (data) {
             body =+ data;
             console.log(body.toString());
-            messageToKonfach(body.toString());
+            setTimeout(messageToKonfach, 3, body.toString());
           });
      }
      if(req.url == '/baka'){
