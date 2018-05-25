@@ -289,8 +289,9 @@ function accept(req, res) {
           var body = '';
           req.on('data', function (data) {
             body += data;
+            console.log(body.toString());
           });
-          messageToKonfach(body.toString());
+          //messageToKonfach(body.toString());
      }
      if(req.url == '/baka'){
           //baka();
