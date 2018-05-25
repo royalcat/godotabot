@@ -290,7 +290,7 @@ function accept(req, res) {
           req.on('data', function (data) {
             body += data;
           });
-          messageToKonfach(body);
+          messageToKonfach(body.toString());
      }
      if(req.url == '/baka'){
           //baka();
