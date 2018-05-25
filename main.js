@@ -286,9 +286,9 @@ function MSGreq(message)
 
 function accept(req, res) {
      if (req.url == '/godota') {
-          var body = '@everyone Go Dota';
+          var body = '';
           req.on('data', function (data) {
-            body = data;
+            body =+ data;
             console.log(body.toString());
             messageToKonfach(body.toString());
           });
