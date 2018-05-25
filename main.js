@@ -286,10 +286,14 @@ function MSGreq(message)
 
 function accept(req, res) {
      if (req.url == '/godota') {
-          messageToKonfach('godota');
+          var body = '';
+          req.on('data', function (data) {
+            body += data;
+          });
+          messageToKonfach(body);
      }
      if(req.url == '/baka'){
-          baka();
+          //baka();
      } else {
           file.serve(req, res);
      }
