@@ -286,12 +286,12 @@ function MSGreq(message)
 
 function accept(req, res) {
      if (req.url == '/godota') {
-          var body = '';
+          var body = '@everyone Go Dota';
           req.on('data', function (data) {
-            body += data;
+            body = data;
             console.log(body.toString());
+            messageToKonfach(body.toString());
           });
-          //messageToKonfach(body.toString());
      }
      if(req.url == '/baka'){
           //baka();
