@@ -10,7 +10,11 @@
   <button onclick="vote()" id="button">SendText</button>
   <input  size = "100" id = "text" value="@everyone Go dota">
   <br> <br>
-  <button onclick="baka()">Baka</button>
+  <button onclick="voice('join')">Join Voice</button>
+  <button onclick="voice('leave')">Leave Voice</button>
+  <br> <br>
+  <button onclick="setGame()">Set Game</button>
+  <input  size = "100" id = "gameName" value="">
   <script type = "text/javascript">
     function vote() {
       var xhr = new XMLHttpRequest();
@@ -19,11 +23,18 @@
       //alert(expression);
       xhr.send(expression);
     }
-    function baka()
+    function voice(activity)
     {
       var xhr = new XMLHttpRequest();
-      xhr.open('GET', 'baka', true);
-      xhr.send(null);
+      xhr.open('POST', 'voice', true);
+      xhr.send(activity);
+    }
+    function setGame()
+    {
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', 'mainCtr', true);
+      var name = document.getElementById("gameName").value;
+      xhr.send(name);
     }
   </script>
 

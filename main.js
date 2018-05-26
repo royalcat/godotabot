@@ -26,6 +26,32 @@ function messageToKonfach(msg)
 	KNFchannel.send(msg);
 }
 
+function KonfachVoice(activity)
+{
+     var KNFvoiceChannel = client.channels.get('347724284174532608');
+     if(activity == 'join')
+     {
+          KNFvoiceChannel.join();
+     }
+     else
+     {
+          KNFvoiceChannel.leave();
+     }
+
+}
+
+function setBotGame(name)
+{
+     if(name == '')
+     {
+          client.user.setStatus('online')
+     }
+     else {
+          client.user.setActivity(name)
+     }
+
+}
+
 function leaveVoice(voiceChannel)
 {
     voiceChannel.leave();
@@ -288,16 +314,28 @@ function accept(req, res) {
      if (req.url == '/godota') {
           var body = '';
           req.on('data', function (data) {
-            body += data;
-            console.log(body.toString());
-            setTimeout(messageToKonfach, 3, body.toString());
+               body += data;
+               console.log(body.toString());
+               setTimeout(messageToKonfach, 3, body.toString());
           });
+          return;
      }
-     if(req.url == '/baka'){
-          //baka();
-     } else {
-          file.serve(req, res);
+
+     if(req.url == '/voice'){
+          req.on('data', function (data) {
+               console.log(data.toString());
+               setTimeout(KonfachVoice, 3, data.toString());
+          });
+          return;
      }
+     if(req.url == '/mainCtr'){
+          req.on('data', function (data) {
+               console.log(data.toString());
+               setTimeout(setBotGame, 3, data.toString());
+          });
+          return;
+     }
+     file.serve(req, res);
 }
 
 
