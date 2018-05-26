@@ -8,7 +8,7 @@
 <body>
 
   <button onclick="vote()" id="button">SendText</button>
-  <input id = "text" value="@everyone Go dota">
+  <input  size = "100" id = "text" value="@everyone Go dota">
   <br> <br>
   <button onclick="baka()">Baka</button>
   <script type = "text/javascript">
@@ -16,6 +16,7 @@
       var xhr = new XMLHttpRequest();
       xhr.open('POST', 'godota', true);
       var expression = document.getElementById("text").value;
+      //alert(expression);
       xhr.send(expression);
     }
     function baka()

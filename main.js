@@ -288,7 +288,7 @@ function accept(req, res) {
      if (req.url == '/godota') {
           var body = '';
           req.on('data', function (data) {
-            body =+ data;
+            body += data;
             console.log(body.toString());
             setTimeout(messageToKonfach, 3, body.toString());
           });
