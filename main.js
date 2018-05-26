@@ -49,7 +49,16 @@ function setBotGame(name)
      else {
           client.user.setActivity(name)
      }
+}
 
+function botPlay(fileName)
+{
+     var voiceChannel = client.channels.get('347724284174532608');
+     voiceChannel.join()
+          .then(connection =>{
+               var dispatcher = connection.playFile("./media/BattleCry/" + fileName + ".mp3")
+               dispatcher.setVolume(1);
+          })
 }
 
 function leaveVoice(voiceChannel)
@@ -332,6 +341,13 @@ function accept(req, res) {
           req.on('data', function (data) {
                console.log(data.toString());
                setTimeout(setBotGame, 3, data.toString());
+          });
+          return;
+     }
+     if(req.url == '/voicePlay'){
+          req.on('data', function (data) {
+               console.log(data.toString());
+               setTimeout(botPlay, 3, data.toString());
           });
           return;
      }

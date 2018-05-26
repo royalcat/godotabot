@@ -10,12 +10,16 @@
   <button onclick="vote()" id="button">SendText</button>
   <input  size = "100" id = "text" value="@everyone Go dota">
   <br> <br>
-  <button onclick="voice('join')">Join Voice</button>
-  <button onclick="voice('leave')">Leave Voice</button>
-  <br> <br>
   <button onclick="setGame()">Set Game</button>
   <input  size = "100" id = "gameName" value="">
+  <br> <br>
+  <button onclick="voice('join')">Join Voice</button>
+  <button onclick="voice('leave')">Leave Voice</button>
+  <br>
+
+
   <script type = "text/javascript">
+     var CreatedElems = [];
     function vote() {
       var xhr = new XMLHttpRequest();
       xhr.open('POST', 'godota', true);
@@ -28,6 +32,29 @@
       var xhr = new XMLHttpRequest();
       xhr.open('POST', 'voice', true);
       xhr.send(activity);
+      if(activity == 'join')
+      {
+           files = ["'go_dota_blyat'", "'go_v_dotu_allo'", "'nu_zhe_go_dota'", "'uebak_go_dota'"];
+           for(var i = 0; i < 4; i++)
+           {
+                var btn = document.createElement (('v' == '\v') ? '<input name="myName">' : 'input'); btn.name = 'myName';
+                btn.type = 'button';
+                btn.value = files[i];
+                btn.setAttribute('onclick', "voicePlay(" + files[i] + ")")
+                document.body.appendChild(btn);
+                CreatedElems[i] = btn;
+           }
+      }
+      if(activity == 'leave')
+      {
+           for(var i = 0; i < 4; i++)
+           {
+                var elem = CreatedElems[i];
+                elem.parentNode.removeChild(elem);
+           }
+           CreatedElems = [];
+
+      }
     }
     function setGame()
     {
@@ -35,6 +62,12 @@
       xhr.open('POST', 'mainCtr', true);
       var name = document.getElementById("gameName").value;
       xhr.send(name);
+    }
+    function voicePlay(fileName)
+    {
+         var xhr = new XMLHttpRequest();
+         xhr.open('POST', 'voicePlay', true);
+         xhr.send(fileName);
     }
   </script>
 
