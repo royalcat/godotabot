@@ -251,7 +251,7 @@ function MSGreq(message)
 		if(MSG.split(' ')[2] == "sound")
 		{
 			commands[0] = "Go sound play (название файла) - воспроизвести файл в войс\n"
-			commands[1] = "Go sound load (название файла) - зайлить файл на сервер (сбросится после обновы, возможно)\n"
+			commands[1] = "Go sound load (название файла) - залить файл на сервер (сбросится после обновы, возможно)\n"
 			commands[2] = "Go sound list - список файлов в директории\n"
 			text = commands[0] + commands[1] + commands[2];
 		}
@@ -265,9 +265,9 @@ function MSGreq(message)
 		{
 			commands[0] = "Go dota (цифра) - зовет всех в доту нужное количество раз, но не более 10\n"
 			commands[1] = "Go random coub - рандомный коуб\n"
-			commands[2] = "Go custom call (название) (число) зовет всех в заданное название\n"
+			commands[2] = "Go custom call (название) (число) - зовет всех в заданное название\n"
 			commands[3] = "Go ping - Go pong\n"
-			commands[4] = "Go help sound - помошь по звукам\n"
+			commands[4] = "Go help sound - помощь по звукам\n"
 			commands[5] = "Go help fun - всякая всячина\n"
 			commands[6] = "выкопать (упоминание) - каждые 10 секунд упоминает пользователя\n"
 			commands[7] = "выкопался - останавливает все раскопки\n"
