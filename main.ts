@@ -1,4 +1,6 @@
-﻿import { Client } from "@typeit/discord";
+﻿require('dotenv').config()
+
+import { Client } from "@typeit/discord";
 import { DiscordAPIError, Message, TextChannel, VoiceChannel } from "discord.js";
 
 var http = require('http');
@@ -324,8 +326,7 @@ function botPlay(fileName) {
 
 
 
-	//client.login(process.env.BOT_TOKEN);
-	client.login("NDA5OTYwNTgxODk0NzY2NjA1.Wnf7iw.6zddcbDSXDjnAwIPLhqy8HcqySI");
+	client.login(process.env.BOT_TOKEN);
 	client.on('message', (message) => MSGreq(message))
 
 	http.createServer(accept).listen(process.env.PORT || 8080);
