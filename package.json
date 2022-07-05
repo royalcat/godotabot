@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "@discordjs/opus": "^0.5.0",
+    "@discordjs/opus": "^0.8.0",
     "@typeit/discord": "^4.0.9",
     "chai": "^4.3.4",
     "discord.js": "^11.6.4",
